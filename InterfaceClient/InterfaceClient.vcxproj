@@ -105,8 +105,10 @@
     </ClCompile>
     <ClCompile Include="interfaceclient.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="parameter.cpp" />
     <ClCompile Include="pixel.cpp" />
     <ClCompile Include="pixelarray.cpp" />
+    <ClCompile Include="return.cpp" />
     <ClCompile Include="setting.cpp" />
   </ItemGroup>
   <ItemGroup>

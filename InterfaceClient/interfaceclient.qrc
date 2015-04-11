@@ -1,5 +1,17 @@
 <RCC>
     <qresource prefix="/InterfaceClient">
         <file>Resources/open.png</file>
+        <file>Resources/green.png</file>
+        <file>Resources/red.png</file>
+        <file>Resources/gray.png</file>
+        <file>Resources/addfile.png</file>
+        <file>Resources/arrow.png</file>
+        <file>Resources/arrow2.png</file>
+        <file>Resources/error.png</file>
+        <file>Resources/formfile.png</file>
+        <file>Resources/info.png</file>
+        <file>Resources/openfile.png</file>
+        <file>Resources/savefile.png</file>
+        <file>Resources/warning.png</file>
     </qresource>
 </RCC>
