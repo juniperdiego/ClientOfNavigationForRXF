@@ -1,7 +1,7 @@
 #include "interfaceclient.h"
 #include <QtWidgets/QApplication>
 
-#if 1
+#ifdef UT
 #include "dataGen.h"
 
 void test_dataGenForAerocraft()
@@ -37,8 +37,10 @@ int main(int argc, char *argv[])
 
 	//QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8")) ;
 
+#ifdef UT
 	test_dataGenForAerocraft();
 	return 0;
+#endif
 
 	InterfaceClient w;
 	w.show();
