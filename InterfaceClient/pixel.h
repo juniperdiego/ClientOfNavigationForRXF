@@ -24,7 +24,7 @@ public:
 
 	void setValid(bool valid);
 	bool getValid() {return m_valid;}
-	const QString& getAngleStr();
+	QString getAngleStr();
 
 protected:
 	bool eventFilter(QObject* o, QEvent* e);

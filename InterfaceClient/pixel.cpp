@@ -23,7 +23,7 @@ Pixel::Pixel(const QString& value, bool valid, int mode, const QSize& size, QWid
 	layout->addWidget(m_label);
 
 	m_edit = new QLineEdit;
-	//m_edit->setFrame(false);
+	m_edit->setFrame(false);
 	m_edit->setVisible(false);
 	layout->addWidget(m_edit);
 
@@ -82,7 +82,7 @@ void Pixel::setValid(bool valid)
 	setStyleSheet(m_valid ? cValidStyle : cInvalidStyle);
 }
 
-const QString& Pixel::getAngleStr()
+QString Pixel::getAngleStr()
 {
 	if (m_edit->isVisible())
 		return m_edit->text();
