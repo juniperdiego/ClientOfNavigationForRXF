@@ -2,8 +2,8 @@
 #define INTERFACECLIENT_H
 
 #include <QtWidgets/QMainWindow>
-#include <QTextCodec>
 #include "ui_interfaceclient.h"
+#include "pixelarray.h"
 
 class InterfaceClient : public QMainWindow
 {
@@ -14,9 +14,18 @@ public:
 	~InterfaceClient();
 
 private:
+	void initComT();
+	void initComR();
+	void initSetting();
+
+private:
 	Ui::InterfaceClientClass ui;
 
-	QTextCodec*	codec;
+	PixelArray* rCom;
+	PixelArray* tCom;
+	PixelArray* srCom;
+	PixelArray* stCom;
+
 };
 
 #endif // INTERFACECLIENT_H

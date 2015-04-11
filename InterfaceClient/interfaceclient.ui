@@ -1560,7 +1560,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_2">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab">
            <attribute name="title">
@@ -1739,7 +1739,7 @@
                 <number>4</number>
                </property>
                <item>
-                <widget class="QWidget" name="widget" native="true"/>
+                <widget class="QWidget" name="srW" native="true"/>
                </item>
                <item>
                 <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -1823,7 +1823,7 @@
                 <number>4</number>
                </property>
                <item>
-                <widget class="QWidget" name="widget_2" native="true"/>
+                <widget class="QWidget" name="stW" native="true"/>
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_26">
