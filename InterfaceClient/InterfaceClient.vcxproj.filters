@@ -83,6 +83,9 @@
     <ClCompile Include="return.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dataGen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="interfaceclient.h">
@@ -106,6 +109,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="comm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dataGen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

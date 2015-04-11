@@ -79,6 +79,7 @@
   <ItemGroup>
     <ClCompile Include="componentr.cpp" />
     <ClCompile Include="componentt.cpp" />
+    <ClCompile Include="dataGen.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_interfaceclient.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="comm.h" />
+    <ClInclude Include="dataGen.h" />
     <ClInclude Include="GeneratedFiles\ui_interfaceclient.h" />
     <CustomBuild Include="pixelarray.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
