@@ -5,6 +5,8 @@
 #include <QString>
 #include <QDebug>
 
+#define MAX_LOG_LINE 1000
+
 inline 
 QString toString(const QByteArray& str)
 {

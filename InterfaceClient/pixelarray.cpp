@@ -50,7 +50,7 @@ PixelArray::PixelArray(int row, int col, bool isEdit, bool showHeader, QWidget *
 			}
 			else if (i > 0 && j > 0)
 			{
-				Pixel* pixel = new Pixel(QString("%1.%2").arg(i).arg(j), true, isEdit, large ? cDefLSize : cDefSSize);
+				Pixel* pixel = new Pixel(QString("%1.%2").arg(i).arg(j), true, isEdit ? 1 : -1, large ? cDefLSize : cDefSSize);
 				gLayout->addWidget(pixel, i, j);
 				rowList.append(pixel);
 			}

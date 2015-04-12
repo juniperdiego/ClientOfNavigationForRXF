@@ -2,6 +2,13 @@
 
 void InterfaceClient::initSetting()
 {
+	ui.saxLE->setValidator(m_angleValid);
+	ui.sayLE->setValidator(m_angleValid);
+	ui.sazLE->setValidator(m_angleValid);
+
+	ui.sdxLE->setValidator(m_angleValid);
+	ui.sdyLE->setValidator(m_angleValid);
+
 	//init R
 	QHBoxLayout* rLayout = new QHBoxLayout;
 	rLayout->setMargin(0);
