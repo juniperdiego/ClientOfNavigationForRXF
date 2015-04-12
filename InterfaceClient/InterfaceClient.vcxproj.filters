@@ -92,16 +92,19 @@
     <ClCompile Include="GeneratedFiles\Release\moc_serversetting.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="datagen.cpp">
+    <ClCompile Include="logmng.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_datagen.cpp">
+    <ClCompile Include="datagendialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_datagendialog.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_datagen.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_datagendialog.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="logmng.cpp">
+    <ClCompile Include="dataGen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -127,11 +130,11 @@
     <CustomBuild Include="serversetting.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="datagen.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="datagen.ui">
+    <CustomBuild Include="datagendialog.ui">
       <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="datagendialog.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -144,10 +147,13 @@
     <ClInclude Include="GeneratedFiles\ui_serversetting.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_datagen.h">
+    <ClInclude Include="logmng.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_datagendialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="logmng.h">
+    <ClInclude Include="dataGen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

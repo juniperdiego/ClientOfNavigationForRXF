@@ -70,7 +70,7 @@ void InterfaceClient::onServerSetting()
 void InterfaceClient::onDataGen()
 {
 	if (m_genDataDialog == NULL)
-		m_genDataDialog = new DataGen(this);
+		m_genDataDialog = new DataGenDialog(this);
 	m_genDataDialog->show();
 	m_genDataDialog->raise();
 }

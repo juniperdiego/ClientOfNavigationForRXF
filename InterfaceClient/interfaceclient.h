@@ -9,11 +9,11 @@
 #include "comm.h"
 #include "pixelarray.h"
 #include "serversetting.h"
-#include "datagen.h"
+#include "datagendialog.h"
 #include "logmng.h"
 
 class ServerSetting;
-class DataGen;
+class DataGenDialog;
 class LogMng;
 class InterfaceClient : public QMainWindow
 {
@@ -73,7 +73,7 @@ private:
 
 	LogMng*	m_logMng;
 	ServerSetting*	m_serverDialog;
-	DataGen*		m_genDataDialog;
+	DataGenDialog*	m_genDataDialog;
 
 	QDoubleValidator*	m_angleValid;
 	QDoubleValidator*	m_doubleValid;
