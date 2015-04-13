@@ -1,14 +1,14 @@
-#ifndef TCP_DATA_GEN
-#define TCP_DATA_GEN
+#ifndef TCP_DATA_H
+#define TCP_DATA_H
 
 #include <vector>
 using std::vector;
 
-class tcpDataGen
+class tcpData
 {
 public:
-	tcpDataGen(char dataHeader, char cmd, char dataLen);
-	~tcpDataGen();
+	tcpData(char dataHeader, char cmd, char dataLen);
+	~tcpData();
 	virtual vector<int>  generate() =0;
 	int getDataSize();
 protected:
@@ -19,7 +19,7 @@ protected:
 	char	m_check;
 };
 
-class compTCorrection : public tcpDataGen
+class compTCorrection : public tcpData
 {
 public:
 	compTCorrection();
@@ -31,7 +31,7 @@ private:
 	vector<vector<bool> > m_enableMatrix;
 };
 
-class compRCorrection : public tcpDataGen
+class compRCorrection : public tcpData
 {
 public:
 	compRCorrection();
@@ -43,4 +43,23 @@ private:
 	vector<vector<bool> > m_enableMatrix;
 };
 
+class compTTestCode: public tcpData
+{
+public:
+	compTTestCode();
+	vector<int> generate();
+	void setEnable(vector<vector<bool> > enableMatrix);
+private:
+	vector<vector<bool> > m_enableMatrix;
+};
+
+class compRTestCode: public tcpData
+{
+public:
+	compRTestCode();
+	vector<int> generate();
+	void setEnable(vector<vector<bool> > enableMatrix);
+private:
+	vector<vector<bool> > m_enableMatrix;
+};
 #endif // TCP_DATA_GEN

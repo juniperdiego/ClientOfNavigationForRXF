@@ -116,7 +116,7 @@
     <ClCompile Include="socketclient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tcpDataGen.cpp">
+    <ClCompile Include="tcpData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sourcecodemodel.cpp">
@@ -183,7 +183,7 @@
     <ClInclude Include="dataGen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tcpDataGen.h">
+    <ClInclude Include="tcpData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

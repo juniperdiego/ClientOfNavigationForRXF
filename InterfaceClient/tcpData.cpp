@@ -1,4 +1,4 @@
-#include "tcpDataGen.h"
+#include "tcpData.h"
 
 char degree2Binary(float degree)
 {
@@ -6,7 +6,7 @@ char degree2Binary(float degree)
 	
 }
 
-tcpDataGen::tcpDataGen(char dataHeader, char cmd, char dataLen)
+tcpData::tcpData(char dataHeader, char cmd, char dataLen)
 {
 	m_dataHeader = dataHeader;
 	m_cmd = cmd;
@@ -14,17 +14,17 @@ tcpDataGen::tcpDataGen(char dataHeader, char cmd, char dataLen)
 	m_dataLenOccupyBytes = 1;//default, it is ususal except compTCorrection
 }
 
-tcpDataGen::~tcpDataGen()
+tcpData::~tcpData()
 {
 }
 
-int tcpDataGen::getDataSize()
+int tcpData::getDataSize()
 {
 	return m_dataLen + 3 + m_dataLenOccupyBytes;
 }
 
 compTCorrection::compTCorrection()
-	:tcpDataGen(0x92, 0xCC, 0x200)
+	:tcpData(0x92, 0xCC, 0x200)
 {
 	m_dataLenOccupyBytes = 2;//compTCorrection
 }
@@ -84,7 +84,7 @@ vector<int> compTCorrection::generate()
 }
 
 compRCorrection::compRCorrection()
-	:tcpDataGen(0x92, 0xCB, 0x6C)
+	:tcpData(0x92, 0xCB, 0x6C)
 {
 }
 
@@ -142,3 +142,122 @@ vector<int> compRCorrection::generate()
 
 }
 
+
+compTTestCode::compTTestCode()
+	:tcpData(0x92, 0x5A, 0x20)
+{
+}
+
+void compTTestCode::setEnable(vector<vector<bool> > enableMatrix)
+{
+	m_enableMatrix = enableMatrix;
+}
+
+vector<int> compTTestCode::generate()
+{
+	vector<int> res;
+
+	if(m_enableMatrix.size() == 0)
+		return res;
+
+	int rowSize = m_enableMatrix.size();
+	int colSize = m_enableMatrix[0].size();
+
+	if(rowSize != 16 || colSize != 16)
+		return res;
+
+	res.push_back(m_dataHeader);
+	res.push_back(m_cmd);
+	res.push_back(m_dataLen & 0xff);
+
+	int data = 0;
+	for(int i = 0;  i < rowSize; i++)
+	{
+		data = 0;
+		for(int j = 0; j < colSize/2; j++)
+		{
+			if(m_enableMatrix[i][j])
+				data = data | (1 << j);
+		}
+		res.push_back(data);
+
+		data = 0;
+		for(int j = colSize/2 + 1; j < colSize; j++)
+		{
+			if(m_enableMatrix[i][j])
+				data = data | (1 << (j- colSize/2));
+		}
+		res.push_back(data);
+	}
+
+	// calc the check
+	char check = 0;
+	for(int i = 2 + m_dataLenOccupyBytes; i < res.size(); i++)
+	{
+		check = check ^ (res[i] & 0xff);
+	}
+	res.push_back(check);
+	return res;
+
+}
+
+
+compRTestCode::compRTestCode()
+	:tcpData(0x92, 0xA5, 0x05)
+{
+}
+
+void compRTestCode::setEnable(vector<vector<bool> > enableMatrix)
+{
+	m_enableMatrix = enableMatrix;
+}
+
+vector<int> compRTestCode::generate()
+{
+	vector<int> res;
+
+	if(m_enableMatrix.size() == 0)
+		return res;
+
+	int rowSize = m_enableMatrix.size();
+	int colSize = m_enableMatrix[0].size();
+
+	if(rowSize != 6 || colSize != 6)
+		return res;
+
+	vector<bool> enableVec;
+
+	for(int i = 0; i < rowSize; i++)
+	{
+		for(int j = 0; j < rowSize; j++)
+		{
+			enableVec.push_back(m_enableMatrix[i][j]);
+		}
+	}
+
+	res.push_back(m_dataHeader);
+	res.push_back(m_cmd);
+	res.push_back(m_dataLen & 0xff);
+
+	int data = 0;
+	for(int i = 0;  i < enableVec.size(); i++)
+	{
+		if(enableVec[i])
+			data = data | (1 << (i % 8));
+		if( (i+1) % 8 == 0 || (i + 1) == enableVec.size() )
+		{
+			res.push_back(data);
+			data = 0;
+		}
+	}
+
+	// calc the check
+	char check = 0;
+	for(int i = 2 + m_dataLenOccupyBytes; i < res.size(); i++)
+	{
+		check = check ^ (res[i] & 0xff);
+	}
+	res.push_back(check);
+	return res;
+
+}
