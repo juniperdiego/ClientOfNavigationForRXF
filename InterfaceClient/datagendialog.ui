@@ -6,22 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>654</width>
+    <width>655</width>
     <height>439</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>数据生成</string>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">QPushButton{
-background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
-                                           
-QPushButton:hover{
-background-color:rgb(85,192,86);}
-                                          
-QPushButton:pressed{
-color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <property name="leftMargin">
@@ -51,7 +41,7 @@ color:rgb(84, 86, 82);                                                          
      <property name="title">
       <string>飞行器自身参数</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,1,0">
       <property name="leftMargin">
        <number>4</number>
       </property>
@@ -69,7 +59,7 @@ color:rgb(84, 86, 82);                                                          
         <property name="title">
          <string>GPS数据</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout">
+        <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0">
          <property name="leftMargin">
           <number>4</number>
          </property>
@@ -93,7 +83,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="zxLE"/>
+          <widget class="QLineEdit" name="zxLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="0" column="2">
           <widget class="QLabel" name="label_2">
@@ -110,7 +107,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="zyLE"/>
+          <widget class="QLineEdit" name="zyLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="1" column="2">
           <widget class="QLabel" name="label_3">
@@ -127,7 +131,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="zzLE"/>
+          <widget class="QLineEdit" name="zzLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="2" column="2">
           <widget class="QLabel" name="label_5">
@@ -144,7 +155,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QLineEdit" name="zxsLE"/>
+          <widget class="QLineEdit" name="zxsLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="3" column="2">
           <widget class="QLabel" name="label_7">
@@ -161,7 +179,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QLineEdit" name="zysLE"/>
+          <widget class="QLineEdit" name="zysLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="4" column="2">
           <widget class="QLabel" name="label_9">
@@ -178,7 +203,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QLineEdit" name="zzsLE"/>
+          <widget class="QLineEdit" name="zzsLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="5" column="2">
           <widget class="QLabel" name="label_11">
@@ -219,7 +251,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="gjLE"/>
+          <widget class="QLineEdit" name="gjLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="0" column="2">
           <widget class="QLabel" name="label_13">
@@ -236,7 +275,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="fjLE"/>
+          <widget class="QLineEdit" name="fjLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="1" column="2">
           <widget class="QLabel" name="label_15">
@@ -253,7 +299,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="pjLE"/>
+          <widget class="QLineEdit" name="pjLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="2" column="2">
           <widget class="QLabel" name="label_17">
@@ -270,7 +323,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QLineEdit" name="gjsLE"/>
+          <widget class="QLineEdit" name="gjsLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="3" column="2">
           <widget class="QLabel" name="label_19">
@@ -287,7 +347,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QLineEdit" name="fjsLE"/>
+          <widget class="QLineEdit" name="fjsLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="4" column="2">
           <widget class="QLabel" name="label_21">
@@ -304,7 +371,14 @@ color:rgb(84, 86, 82);                                                          
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QLineEdit" name="pjsLE"/>
+          <widget class="QLineEdit" name="pjsLE">
+           <property name="maximumSize">
+            <size>
+             <width>80</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item row="5" column="2">
           <widget class="QLabel" name="label_23">
@@ -335,7 +409,29 @@ color:rgb(84, 86, 82);                                                          
           <number>4</number>
          </property>
          <item>
-          <widget class="QTextEdit" name="ffTE"/>
+          <widget class="QTableView" name="ffTableView">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>240</width>
+             <height>0</height>
+            </size>
+           </property>
+           <attribute name="horizontalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="verticalHeaderDefaultSectionSize">
+            <number>25</number>
+           </attribute>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -386,6 +482,16 @@ color:rgb(84, 86, 82);                                                          
             <height>22</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+          </property>
           <property name="text">
            <string>生成文件</string>
           </property>
@@ -401,7 +507,7 @@ color:rgb(84, 86, 82);                                                          
      <property name="title">
       <string>广播时间信息</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1,0">
       <property name="leftMargin">
        <number>4</number>
       </property>
@@ -653,6 +759,16 @@ color:rgb(84, 86, 82);                                                          
             <height>22</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+          </property>
           <property name="text">
            <string>生成文件</string>
           </property>
@@ -691,6 +807,16 @@ color:rgb(84, 86, 82);                                                          
          <width>80</width>
          <height>22</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
        </property>
        <property name="text">
         <string>关闭</string>

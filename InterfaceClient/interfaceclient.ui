@@ -6,22 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>689</width>
+    <width>702</width>
     <height>660</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>XXX地检客户端</string>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">QPushButton{
-background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
-                                           
-QPushButton:hover{
-background-color:rgb(85,192,86);}
-                                          
-QPushButton:pressed{
-color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -44,7 +34,7 @@ color:rgb(84, 86, 82);                                                          
       </property>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab0">
         <attribute name="title">
@@ -129,6 +119,16 @@ color:rgb(84, 86, 82);                                                          
                 <height>22</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+              </property>
               <property name="text">
                <string>发送指令</string>
               </property>
@@ -182,6 +182,16 @@ color:rgb(84, 86, 82);                                                          
                 <width>80</width>
                 <height>22</height>
                </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
               </property>
               <property name="text">
                <string>复位</string>
@@ -690,6 +700,16 @@ color:rgb(84, 86, 82);                                                          
                 <height>22</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+              </property>
               <property name="text">
                <string>测量</string>
               </property>
@@ -711,7 +731,7 @@ color:rgb(84, 86, 82);                                                          
         <attribute name="title">
          <string>测控参数注入及返回</string>
         </attribute>
-        <layout class="QGridLayout" name="gridLayout_15">
+        <layout class="QGridLayout" name="gridLayout">
          <property name="leftMargin">
           <number>4</number>
          </property>
@@ -724,196 +744,243 @@ color:rgb(84, 86, 82);                                                          
          <property name="bottomMargin">
           <number>4</number>
          </property>
+         <property name="verticalSpacing">
+          <number>2</number>
+         </property>
          <item row="0" column="0" colspan="2">
-          <widget class="QGroupBox" name="groupBox_8">
-           <property name="title">
-            <string>飞行器自身参数</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_6">
-            <property name="leftMargin">
-             <number>4</number>
-            </property>
-            <property name="topMargin">
-             <number>4</number>
-            </property>
-            <property name="rightMargin">
-             <number>4</number>
-            </property>
-            <property name="bottomMargin">
-             <number>4</number>
-            </property>
-            <item row="0" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_5">
-              <item>
-               <widget class="QRadioButton" name="rf1RB">
-                <property name="text">
-                 <string>在轨段</string>
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <item>
+            <widget class="QGroupBox" name="groupBox_8">
+             <property name="title">
+              <string>飞行器自身参数</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_6">
+              <property name="leftMargin">
+               <number>4</number>
+              </property>
+              <property name="topMargin">
+               <number>4</number>
+              </property>
+              <property name="rightMargin">
+               <number>4</number>
+              </property>
+              <property name="bottomMargin">
+               <number>4</number>
+              </property>
+              <item row="0" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <item>
+                 <widget class="QRadioButton" name="rf1RB">
+                  <property name="text">
+                   <string>在轨段</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="rf2RB">
+                  <property name="text">
+                   <string>再入段</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QLabel" name="label_18">
+                  <property name="text">
+                   <string>数据文件</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="rffileLE"/>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="rffileTB">
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="interfaceclient.qrc">
+                    <normaloff>:/InterfaceClient/Resources/open.png</normaloff>:/InterfaceClient/Resources/open.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="1">
+               <widget class="QPushButton" name="rfgenPB">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
                 </property>
-                <property name="checked">
-                 <bool>true</bool>
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>22</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+                </property>
+                <property name="text">
+                 <string>数据生成</string>
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QRadioButton" name="rf2RB">
+              <item row="1" column="1">
+               <widget class="QPushButton" name="rfinPB">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>22</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+                </property>
                 <property name="text">
-                 <string>再入段</string>
+                 <string>注入</string>
                 </property>
                </widget>
               </item>
              </layout>
-            </item>
-            <item row="1" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <item>
-               <widget class="QLabel" name="label_18">
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="rggenPB">
+             <property name="title">
+              <string>广播时间信息</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_7">
+              <property name="leftMargin">
+               <number>4</number>
+              </property>
+              <property name="topMargin">
+               <number>4</number>
+              </property>
+              <property name="rightMargin">
+               <number>4</number>
+              </property>
+              <property name="bottomMargin">
+               <number>4</number>
+              </property>
+              <item row="1" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <item>
+                 <widget class="QLabel" name="label_23">
+                  <property name="text">
+                   <string>数据文件</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="rgfileLE"/>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="rgfileTB">
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="interfaceclient.qrc">
+                    <normaloff>:/InterfaceClient/Resources/open.png</normaloff>:/InterfaceClient/Resources/open.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="1" column="1">
+               <widget class="QPushButton" name="rginPB">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>22</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+                </property>
                 <property name="text">
-                 <string>数据文件</string>
+                 <string>注入</string>
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QLineEdit" name="rffileLE"/>
-              </item>
-              <item>
-               <widget class="QToolButton" name="rffileTB">
-                <property name="text">
-                 <string>...</string>
+              <item row="0" column="1">
+               <widget class="QPushButton" name="rfgenPB_2">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
                 </property>
-                <property name="icon">
-                 <iconset resource="interfaceclient.qrc">
-                  <normaloff>:/InterfaceClient/Resources/open.png</normaloff>:/InterfaceClient/Resources/open.png</iconset>
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>22</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+                </property>
+                <property name="text">
+                 <string>数据生成</string>
                 </property>
                </widget>
               </item>
              </layout>
-            </item>
-            <item row="0" column="1">
-             <widget class="QPushButton" name="rfgenPB">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>80</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>数据生成</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QPushButton" name="rfinPB">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>80</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>注入</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
+            </widget>
+           </item>
+          </layout>
          </item>
-         <item row="0" column="2">
-          <widget class="QGroupBox" name="rggenPB">
-           <property name="title">
-            <string>广播时间信息</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_7">
-            <property name="leftMargin">
-             <number>4</number>
-            </property>
-            <property name="topMargin">
-             <number>4</number>
-            </property>
-            <property name="rightMargin">
-             <number>4</number>
-            </property>
-            <property name="bottomMargin">
-             <number>4</number>
-            </property>
-            <item row="1" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
-              <item>
-               <widget class="QLabel" name="label_23">
-                <property name="text">
-                 <string>数据文件</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="rgfileLE"/>
-              </item>
-              <item>
-               <widget class="QToolButton" name="rgfileTB">
-                <property name="text">
-                 <string>...</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="interfaceclient.qrc">
-                  <normaloff>:/InterfaceClient/Resources/open.png</normaloff>:/InterfaceClient/Resources/open.png</iconset>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="1" column="1">
-             <widget class="QPushButton" name="rginPB">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>80</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>注入</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QPushButton" name="rfgenPB_2">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>80</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>数据生成</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="0" colspan="3">
+         <item row="1" column="0" colspan="2">
           <widget class="QGroupBox" name="groupBox_10">
            <property name="title">
             <string>指向目标参数</string>
@@ -1397,6 +1464,16 @@ color:rgb(84, 86, 82);                                                          
                 <height>22</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+              </property>
               <property name="text">
                <string>注入</string>
               </property>
@@ -1451,6 +1528,16 @@ color:rgb(84, 86, 82);                                                          
                 <height>22</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+              </property>
               <property name="text">
                <string>注入</string>
               </property>
@@ -1459,7 +1546,7 @@ color:rgb(84, 86, 82);                                                          
            </layout>
           </widget>
          </item>
-         <item row="2" column="1" colspan="2">
+         <item row="2" column="1">
           <widget class="QGroupBox" name="groupBox_15">
            <property name="title">
             <string>相控阵指向参数</string>
@@ -1538,6 +1625,16 @@ color:rgb(84, 86, 82);                                                          
                 <height>22</height>
                </size>
               </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+              </property>
               <property name="text">
                <string>注入</string>
               </property>
@@ -1546,7 +1643,7 @@ color:rgb(84, 86, 82);                                                          
            </layout>
           </widget>
          </item>
-         <item row="3" column="0" colspan="3">
+         <item row="3" column="0" colspan="2">
           <widget class="QGroupBox" name="groupBox_16">
            <property name="title">
             <string>遥控参数</string>
@@ -1847,6 +1944,16 @@ color:rgb(84, 86, 82);                                                          
                     <height>22</height>
                    </size>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+                  </property>
                   <property name="text">
                    <string>发送指令</string>
                   </property>
@@ -1920,6 +2027,16 @@ color:rgb(84, 86, 82);                                                          
                     <width>80</width>
                     <height>22</height>
                    </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
                   </property>
                   <property name="text">
                    <string>发送指令</string>
@@ -1995,6 +2112,16 @@ color:rgb(84, 86, 82);                                                          
                       <width>80</width>
                       <height>22</height>
                      </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
                     </property>
                     <property name="text">
                      <string>发送指令</string>
@@ -2089,8 +2216,18 @@ color:rgb(84, 86, 82);                                                          
                       <height>22</height>
                      </size>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton{
+background-color:rgb(63,161,86);                                            color: white;   border-radius: 3px;  border-style: outset;}
+                                           
+QPushButton:hover{
+background-color:rgb(85,192,86);}
+                                          
+QPushButton:pressed{
+color:rgb(84, 86, 82);                                                           border-style: inset; }</string>
+                    </property>
                     <property name="text">
-                     <string>连接</string>
+                     <string>发送指令</string>
                     </property>
                    </widget>
                   </item>
@@ -2179,7 +2316,7 @@ QCheckBox::indicator:unchecked {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>689</width>
+     <width>702</width>
      <height>23</height>
     </rect>
    </property>

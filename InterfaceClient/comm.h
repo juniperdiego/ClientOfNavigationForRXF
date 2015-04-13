@@ -4,6 +4,7 @@
 #include <QTextCodec>
 #include <QString>
 #include <QDebug>
+#include <QMessageBox>
 
 #define MAX_LOG_LINE 1000
 

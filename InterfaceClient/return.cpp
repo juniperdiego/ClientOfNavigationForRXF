@@ -38,11 +38,18 @@ void InterfaceClient::onRFBroClick()
                            path.absolutePath(), tr("DAT (*.dat)"));
     if (!fileName.endsWith(".dat", Qt::CaseInsensitive)) return;
     ui.rffileLE->setText(fileName);
+
 }
 
 void InterfaceClient::onRFIntoClick()
 {
+	QString fileName = ui.rffileLE->text();
+	if (fileName.isEmpty())	return;
 
+	QFile file(fileName);
+	file.open(QIODevice::ReadOnly);
+    QByteArray inData = file.readAll();
+    qDebug()<<"from file"<<inData.toHex();
 }
 
 void InterfaceClient::onRGBroClick()

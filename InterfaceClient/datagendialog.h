@@ -7,6 +7,9 @@
 #include <QFileDialog>
 #include "ui_datagendialog.h"
 #include "comm.h"
+#include "sourcecodemodel.h"
+
+const int LEN_DATA=104; 
 
 class DataGenDialog : public QDialog
 {
@@ -16,12 +19,20 @@ public:
 	DataGenDialog(QWidget *parent = 0);
 	~DataGenDialog();
 
+public:
+	void setIsOnTrack(bool isOnTrack);
+
 private slots:
 	void onFGenFileClick();
 	void onGGenFileClick();
 
 private:
+	bool checkCraftParameter();
+
+private:
 	Ui::DataGenDialog ui;
+
+	SourceCodeModel* m_craftModel;
 };
 
 #endif // DATAGEN_H

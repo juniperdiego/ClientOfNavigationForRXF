@@ -119,6 +119,15 @@
     <ClCompile Include="tcpDataGen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sourcecodemodel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_sourcecodemodel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_sourcecodemodel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="interfaceclient.h">
@@ -149,6 +158,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="socketclient.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="sourcecodemodel.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

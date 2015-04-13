@@ -71,6 +71,7 @@ void InterfaceClient::onDataGen()
 {
 	if (m_genDataDialog == NULL)
 		m_genDataDialog = new DataGenDialog(this);
+	m_genDataDialog->setIsOnTrack(ui.rf1RB->isChecked());
 	m_genDataDialog->show();
 	m_genDataDialog->raise();
 }
