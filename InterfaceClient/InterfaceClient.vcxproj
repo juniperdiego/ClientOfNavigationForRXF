@@ -133,7 +133,7 @@
     <ClCompile Include="serversetting.cpp" />
     <ClCompile Include="setting.cpp" />
     <ClCompile Include="socketclient.cpp" />
-    <ClCompile Include="tcpDataGen.cpp" />
+    <ClCompile Include="tcpData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="interfaceclient.h">
@@ -162,7 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="comm.h" />
-    <ClInclude Include="tcpDataGen.h" />
+    <ClInclude Include="tcpData.h" />
     <CustomBuild Include="socketclient.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing socketclient.h...</Message>
