@@ -6,7 +6,14 @@
 #include <QDebug>
 #include <QMessageBox>
 
-#define MAX_LOG_LINE 1000
+const int MAX_LOG_LINE=1000;
+
+const int T_PORT=7000;
+const int R_PORT=7001;
+const int P_PORT=9000;
+const int S_PORT=9001;
+const int ST_PORT=8000;
+const int SR_PORT=8002; 
 
 inline 
 QString toString(const QByteArray& str)

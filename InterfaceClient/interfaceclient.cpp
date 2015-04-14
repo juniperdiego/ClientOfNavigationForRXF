@@ -64,8 +64,20 @@ InterfaceClient::~InterfaceClient()
 
 void InterfaceClient::onServerSetting()
 {
+	bool flag = false;
+	if( m_socketT->state()==QAbstractSocket::ConnectedState ||
+		m_socketR->state()==QAbstractSocket::ConnectedState ||
+		m_socketP->state()==QAbstractSocket::ConnectedState ||
+		m_socketS->state()==QAbstractSocket::ConnectedState ||
+		m_socketST->state()==QAbstractSocket::ConnectedState ||
+		m_socketSR->state()==QAbstractSocket::ConnectedState
+		)
+	{
+		flag = true;
+	}
 	if (m_serverDialog == NULL)
 		m_serverDialog = new ServerSetting(false, this);
+	m_serverDialog->setFlag(flag);
 	m_serverDialog->exec();
 }
 
@@ -120,4 +132,37 @@ void InterfaceClient::clearLog()
 	m_logIndex = 0;
 }
 
+void InterfaceClient::initSocket()
+{
+	m_socketT = new SocketClient(this);
+	connect(m_socketT, SIGNAL(readyRead()), this, SLOT(rcvTState()));
+}
+
+void InterfaceClient::connectServer(const QString &ip)
+{
+	m_socketT->start(ip, T_PORT);
+	m_socketR->start(ip, R_PORT);
+	m_socketP->start(ip, P_PORT);
+	m_socketS->start(ip, S_PORT);
+	m_socketST->start(ip, ST_PORT);
+	m_socketSR->start(ip, SR_PORT);
+
+	if (m_serverDialog)
+	{
+		m_serverDialog->reject();
+	}
+
+}
+
+void InterfaceClient::disconnectServer()
+{
+	m_socketT->disconnectFromHost();
+	m_socketR->disconnectFromHost();
+	m_socketP->disconnectFromHost();
+	m_socketS->disconnectFromHost();
+	m_socketST->disconnectFromHost();
+	m_socketSR->disconnectFromHost();
+
+	
+}
 

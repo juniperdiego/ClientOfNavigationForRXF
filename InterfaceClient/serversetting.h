@@ -14,6 +14,8 @@ public:
 	ServerSetting(bool flag, QWidget *parent = 0);
 	~ServerSetting();
 
+	void setFlag(bool flag);
+
 private slots:
 	void switchConnection();
 

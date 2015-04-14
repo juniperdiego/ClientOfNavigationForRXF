@@ -11,6 +11,7 @@
 #include "serversetting.h"
 #include "datagendialog.h"
 #include "logmng.h"
+#include "socketclient.h"
 
 class ServerSetting;
 class DataGenDialog;
@@ -33,12 +34,18 @@ public:
 	//Return and Into
 	void setRWorkState(bool state);
 
+	//socket
+	void connectServer(const QString &ip);
+	void disconnectServer();
+
 private:
 	void initPara();
 	void initReturn();
 	void initComT();
 	void initComR();
 	void initSetting();
+
+	void initSocket();
 
 public slots:
 	//menu
@@ -65,6 +72,8 @@ public slots:
 	void onSRSendClick();
 	void onSTSendClick();
 
+	//T
+	void rcvTState();
 
 private:
 	Ui::InterfaceClientClass ui;
@@ -80,6 +89,13 @@ private:
 
 	QDoubleValidator*	m_angleValid;
 	QDoubleValidator*	m_doubleValid;
+
+	SocketClient*	m_socketT;
+	SocketClient*	m_socketR;
+	SocketClient*	m_socketP;
+	SocketClient*	m_socketS;
+	SocketClient*	m_socketST;
+	SocketClient*	m_socketSR;
 
 	int m_logIndex;
 };
