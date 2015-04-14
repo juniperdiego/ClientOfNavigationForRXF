@@ -47,12 +47,14 @@ InterfaceClient::InterfaceClient(QWidget *parent)
 	m_logMng = new LogMng("Client");
 
 	//test
-	addLog(LOG_TYPE_MESSAGE, "adsadadfadf");
+	addLog(LOG_TYPE_INFO, "adsadadfadf");
 	addLog(LOG_TYPE_WARNNING, "系统一切正常");
 	addLog(LOG_TYPE_ERROR, "系统出错");
 	addLog(LOG_TYPE_ERROR, "系统出错");
 	addLog(LOG_TYPE_ERROR, "系统出错");
 	addLog(LOG_TYPE_ERROR, "系统出错");
+	QString info = toString("Socket链接错误 %1 短裤 %2！").arg(10).arg(20);
+	logWarning(info);
 }
 
 InterfaceClient::~InterfaceClient()
@@ -76,7 +78,7 @@ void InterfaceClient::onDataGen()
 	m_genDataDialog->raise();
 }
 
-void InterfaceClient::addLog(LogTypeEnum type,const char* msg)
+void InterfaceClient::addLog(LogTypeEnum type, const char* msg)
 {
 	int row = ui.logTW->rowCount();
 	if (row >= MAX_LOG_LINE)
@@ -86,17 +88,17 @@ void InterfaceClient::addLog(LogTypeEnum type,const char* msg)
 	ui.logTW->insertRow(row);
 
 	QTableWidgetItem* item0 = new QTableWidgetItem(QString::number(m_logIndex));
-	if (type != LOG_TYPE_MESSAGE) item0->setForeground(type == LOG_TYPE_ERROR ? QBrush(Qt::red) : QBrush(Qt::blue));
+	if (type != LOG_TYPE_INFO) item0->setForeground(type == LOG_TYPE_ERROR ? QBrush(Qt::red) : QBrush(Qt::blue));
 	item0->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui.logTW->setItem(row, 0, item0);
 
 	QTableWidgetItem* item1 = new QTableWidgetItem(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
-	if (type != LOG_TYPE_MESSAGE) item1->setForeground(type == LOG_TYPE_ERROR ? QBrush(Qt::red) : QBrush(Qt::blue));
+	if (type != LOG_TYPE_INFO) item1->setForeground(type == LOG_TYPE_ERROR ? QBrush(Qt::red) : QBrush(Qt::blue));
 	item1->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui.logTW->setItem(row, 1, item1);
 
 	QTableWidgetItem* item2 = new QTableWidgetItem(toString(msg));
-	if (type != LOG_TYPE_MESSAGE) item2->setForeground(type == LOG_TYPE_ERROR ? QBrush(Qt::red) : QBrush(Qt::blue));
+	if (type != LOG_TYPE_INFO) item2->setForeground(type == LOG_TYPE_ERROR ? QBrush(Qt::red) : QBrush(Qt::blue));
 	ui.logTW->setItem(row, 2, item2);
 
 	ui.logTW->setCurrentItem(NULL);

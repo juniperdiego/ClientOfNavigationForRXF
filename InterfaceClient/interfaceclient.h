@@ -26,6 +26,9 @@ public:
 public:
 	void addLog(LogTypeEnum type, const char* msg);
 	void clearLog();
+	void logInfo(const QString& info) {addLog(LOG_TYPE_INFO, qPrintable(info));}
+	void logWarning(const QString& info) {addLog(LOG_TYPE_WARNNING, qPrintable(info));}
+	void logError(const QString& info) {addLog(LOG_TYPE_ERROR, qPrintable(info));}
 
 	//Return and Into
 	void setRWorkState(bool state);

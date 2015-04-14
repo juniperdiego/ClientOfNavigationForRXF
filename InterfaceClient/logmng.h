@@ -9,7 +9,7 @@
 
 enum LogTypeEnum
 {
-	LOG_TYPE_MESSAGE,
+	LOG_TYPE_INFO,
 	LOG_TYPE_WARNNING,
 	LOG_TYPE_ERROR
 };

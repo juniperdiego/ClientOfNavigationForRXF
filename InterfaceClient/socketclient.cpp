@@ -1,5 +1,5 @@
 #include "socketclient.h"
-#include "..\interfaceclient.h"
+#include "interfaceclient.h"
 #include <QTextCodec>
 
 SocketClient::SocketClient(QObject *parent)
@@ -36,7 +36,7 @@ void SocketClient::logConnection()
 	QString info;
 
 	info=codec->toUnicode("Socket连接成功 HOST：%1 PORT：%2").arg(m_host).arg(m_port);
-	//m_parent->LogInfo(info);
+	m_parent->logInfo(info);
 }
 
 void SocketClient::logError(QAbstractSocket::SocketError socketError)
@@ -45,7 +45,7 @@ void SocketClient::logError(QAbstractSocket::SocketError socketError)
 	QString info;
 
 	info=codec->toUnicode("Socket错误代码-%1 HOST：%2 PORT：%3").arg(socketError).arg(m_host).arg(m_port);
-	//m_parent->LogError(info);
+	m_parent->logError(info);
 }
 
 void SocketClient::logDisconnection()
@@ -53,8 +53,8 @@ void SocketClient::logDisconnection()
 	QTextCodec * codec =QTextCodec::codecForName("GB18030");
 	QString info;
 
-	info=codec->toUnicode("Socket失去连接 HOST：%1 PORT：%2").arg(m_host).arg(m_port);
-	//m_parent->LogWarning(info);
+	info=toString("Socket失去连接 HOST：%1 PORT：%2").arg(m_host).arg(m_port);
+	m_parent->logWarning(info);
 
 
 }
