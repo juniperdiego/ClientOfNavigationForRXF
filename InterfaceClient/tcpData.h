@@ -1,8 +1,8 @@
 #ifndef TCP_DATA_H
 #define TCP_DATA_H
 
-#include <vector>
-using std::vector;
+
+#include "comm.h"
 
 class tcpData
 {

@@ -141,6 +141,7 @@
     <ClCompile Include="socketclient.cpp" />
     <ClCompile Include="sourcecodemodel.cpp" />
     <ClCompile Include="tcpData.cpp" />
+    <ClCompile Include="tcpRecvFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="interfaceclient.h">
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="comm.h" />
+    <ClInclude Include="tcpRecvFrame.h" />
     <CustomBuild Include="sourcecodemodel.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing sourcecodemodel.h...</Message>

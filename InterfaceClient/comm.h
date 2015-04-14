@@ -6,6 +6,12 @@
 #include <QDebug>
 #include <QMessageBox>
 
+#include <vector>
+using std::vector;
+
+const int TCP_FRAME_START_TAG = 1234567890;
+const int TCP_FRAME_END_TAG = -1234567890;
+
 const int MAX_LOG_LINE=1000;
 
 const int T_PORT=7000;
