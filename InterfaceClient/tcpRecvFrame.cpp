@@ -37,31 +37,31 @@ bool tcpRecvFrame::parseRecvTcpData(int* frame, int frameLen)
 	return true;
 }
 
-compTStatus::compTStatus()
+compTStatusRecvFrame::compTStatusRecvFrame()
 {
 	//m_framlen == TBD TODO
 }
-bool compTStatus::parseRecvTcpData(int* data, int dataLen)
+bool compTStatusRecvFrame::parseRecvTcpData(int* data, int dataLen)
 {
 	//TODO
 	return true;
 }
 
-compRStatus::compRStatus()
+compRStatusRecvFrame::compRStatusRecvFrame()
 {
 	//m_framlen == TBD TODO
 }
-bool compRStatus::parseRecvTcpData(int* data, int dataLen)
+bool compRStatusRecvFrame::parseRecvTcpData(int* data, int dataLen)
 {
 	//TODO
 	return true;
 }
 
-remoteParam::remoteParam()
+remoteParamRecvFrame::remoteParamRecvFrame()
 {
 	m_frameLen = 4 * 14; 
 }
-bool remoteParam::parseRecvTcpData(int* data, int dataLen)
+bool remoteParamRecvFrame::parseRecvTcpData(int* data, int dataLen)
 {
 	float * p = (float*)data;
 	m_paramVec.clear();
@@ -71,11 +71,11 @@ bool remoteParam::parseRecvTcpData(int* data, int dataLen)
 	return true;
 }
 
-returnedParamStatus::returnedParamStatus()
+injectParamRecvFrame::injectParamRecvFrame()
 {
 	m_frameLen = 4 * (4/*header+tail*/ + 1/*modeCode*/ + 11/*data*/); 
 }
-bool returnedParamStatus::parseRecvTcpData(int* data, int dataLen)
+bool injectParamRecvFrame::parseRecvTcpData(int* data, int dataLen)
 {
 	if(data == NULL)
 		return false;
