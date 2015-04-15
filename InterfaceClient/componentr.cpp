@@ -9,3 +9,8 @@ void InterfaceClient::initComR()
 
 	ui.tab3->setLayout(layout);
 }
+
+void InterfaceClient::rcvRState()
+{
+
+}

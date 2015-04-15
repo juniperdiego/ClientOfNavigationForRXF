@@ -828,6 +828,34 @@ color:rgb(84, 86, 82);                                                          
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>zxLE</tabstop>
+  <tabstop>zyLE</tabstop>
+  <tabstop>zzLE</tabstop>
+  <tabstop>zxsLE</tabstop>
+  <tabstop>zysLE</tabstop>
+  <tabstop>zzsLE</tabstop>
+  <tabstop>gjLE</tabstop>
+  <tabstop>fjLE</tabstop>
+  <tabstop>pjLE</tabstop>
+  <tabstop>gjsLE</tabstop>
+  <tabstop>fjsLE</tabstop>
+  <tabstop>pjsLE</tabstop>
+  <tabstop>ffTableView</tabstop>
+  <tabstop>fdzRB</tabstop>
+  <tabstop>fdrRB</tabstop>
+  <tabstop>fgenfilePB</tabstop>
+  <tabstop>tySB</tabstop>
+  <tabstop>tmSB</tabstop>
+  <tabstop>tdSB</tabstop>
+  <tabstop>thSB</tabstop>
+  <tabstop>tmmSB</tabstop>
+  <tabstop>tsSB</tabstop>
+  <tabstop>tmsSB</tabstop>
+  <tabstop>ggenfilePB</tabstop>
+  <tabstop>closePB</tabstop>
+  <tabstop>gfTE</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

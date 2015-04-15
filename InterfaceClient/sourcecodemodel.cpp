@@ -1,8 +1,11 @@
 #include "sourcecodemodel.h"
+#include <QDebug>
+#include <QBrush>
 
 SourceCodeModel::SourceCodeModel(int len, int col, bool htol, QObject *parent)
 	: QAbstractTableModel(parent)
 {
+	m_size = 0;
 	m_len=len;
 	m_col=col;
 	m_data=NULL;
@@ -39,13 +42,13 @@ QVariant SourceCodeModel::data(const QModelIndex & index, int role) const
 	if(!index.isValid()) return QVariant();
 	int col=index.column();
 	int row=index.row();
-
+	qDebug()<<row<<col;
 	if(role==Qt::DisplayRole)
 	{
 		int i=row*m_col+col;
 		if(i>=m_len || i<0)
 		{
-			return QString("");
+			return QString("00");
 		}
 		else
 		{
@@ -58,11 +61,24 @@ QVariant SourceCodeModel::data(const QModelIndex & index, int role) const
 	{
 		return int(Qt::AlignCenter | Qt::AlignVCenter);
 	}
+	else if (role == Qt::BackgroundRole)
+	{
+		int i=row*m_col+col;
+		if(i>=m_size || i<0)
+		{
+			return QBrush(Qt::white);
+		}
+		else
+		{
+			return QBrush(Qt::darkGreen);
+		}
+	}
 	return QVariant();
 }
 
-void SourceCodeModel::setNewPackage(char *pdata)
+void SourceCodeModel::setNewPackage(char *pdata, int size)
 {
+	m_size = size;
 	if(!m_htol)
 	{
 		memcpy(m_data, pdata, m_len);

@@ -15,11 +15,12 @@ public:
 	int columnCount(const QModelIndex & parent = QModelIndex()) const;
 	QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
 
-	void setNewPackage(char *pdata);
+	void setNewPackage(char *pdata, int size);
 
 
 private:
 	char* m_data;
+	int m_size;
 	int m_len;
 	int m_col;
 	bool m_htol; //是否反转字节序，默认否

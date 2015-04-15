@@ -74,6 +74,9 @@ public slots:
 
 	//T
 	void rcvTState();
+	void rcvRState();
+	void rcvPState();
+	void rcvSState();
 
 private:
 	Ui::InterfaceClientClass ui;

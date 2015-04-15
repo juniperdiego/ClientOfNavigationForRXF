@@ -86,3 +86,8 @@ void InterfaceClient::setRWorkState(bool state)
 {
 	ui.rstateL->setText(state ? toString("天线收发工作模式") : toString("天线单发工作模式"));
 }
+
+void InterfaceClient::rcvSState()
+{
+
+}

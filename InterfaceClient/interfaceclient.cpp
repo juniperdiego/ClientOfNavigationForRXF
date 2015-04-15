@@ -46,6 +46,9 @@ InterfaceClient::InterfaceClient(QWidget *parent)
 	//init log 
 	m_logMng = new LogMng("Client");
 
+	//init socket
+	initSocket();
+
 	//test
 	addLog(LOG_TYPE_INFO, "adsadadfadf");
 	addLog(LOG_TYPE_WARNNING, "系统一切正常");
@@ -136,16 +139,31 @@ void InterfaceClient::initSocket()
 {
 	m_socketT = new SocketClient(this);
 	connect(m_socketT, SIGNAL(readyRead()), this, SLOT(rcvTState()));
+	m_socketR = new SocketClient(this);
+	connect(m_socketT, SIGNAL(readyRead()), this, SLOT(rcvRState()));
+	m_socketP = new SocketClient(this);
+	connect(m_socketP, SIGNAL(readyRead()), this, SLOT(rcvPState()));
+	m_socketS = new SocketClient(this);
+	connect(m_socketS, SIGNAL(readyRead()), this, SLOT(rcvSState()));
+	m_socketST = new SocketClient(this);
+	m_socketSR = new SocketClient(this);
+
 }
 
 void InterfaceClient::connectServer(const QString &ip)
 {
-	m_socketT->start(ip, T_PORT);
-	m_socketR->start(ip, R_PORT);
-	m_socketP->start(ip, P_PORT);
-	m_socketS->start(ip, S_PORT);
-	m_socketST->start(ip, ST_PORT);
-	m_socketSR->start(ip, SR_PORT);
+	if (m_socketT->state() == QAbstractSocket::UnconnectedState)
+		m_socketT->start(ip, T_PORT);
+	if (m_socketR->state() == QAbstractSocket::UnconnectedState)
+		m_socketR->start(ip, R_PORT);
+	if (m_socketP->state() == QAbstractSocket::UnconnectedState)
+		m_socketP->start(ip, P_PORT);
+	if (m_socketS->state() == QAbstractSocket::UnconnectedState)
+		m_socketS->start(ip, S_PORT);
+	if (m_socketST->state() == QAbstractSocket::UnconnectedState)
+		m_socketST->start(ip, ST_PORT);
+	if (m_socketSR->state() == QAbstractSocket::UnconnectedState)
+		m_socketSR->start(ip, SR_PORT);
 
 	if (m_serverDialog)
 	{
@@ -163,6 +181,5 @@ void InterfaceClient::disconnectServer()
 	m_socketST->disconnectFromHost();
 	m_socketSR->disconnectFromHost();
 
-	
 }
 

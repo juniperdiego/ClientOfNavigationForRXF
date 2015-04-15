@@ -34,7 +34,7 @@
       </property>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab0">
         <attribute name="title">
@@ -2347,6 +2347,80 @@ QCheckBox::indicator:unchecked {
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>pmodeCO</tabstop>
+  <tabstop>pmodesendPB</tabstop>
+  <tabstop>presetPB</tabstop>
+  <tabstop>pv1LE</tabstop>
+  <tabstop>pa1LE</tabstop>
+  <tabstop>pa2LE</tabstop>
+  <tabstop>pa3LE</tabstop>
+  <tabstop>pa4LE</tabstop>
+  <tabstop>pa5LE</tabstop>
+  <tabstop>pc1LE</tabstop>
+  <tabstop>pc2LE</tabstop>
+  <tabstop>pc3LE</tabstop>
+  <tabstop>pc4LE</tabstop>
+  <tabstop>prCB</tabstop>
+  <tabstop>pmPB</tabstop>
+  <tabstop>logCB</tabstop>
+  <tabstop>logTW</tabstop>
+  <tabstop>rf1RB</tabstop>
+  <tabstop>rf2RB</tabstop>
+  <tabstop>rfgenPB</tabstop>
+  <tabstop>rffileLE</tabstop>
+  <tabstop>rffileTB</tabstop>
+  <tabstop>rfinPB</tabstop>
+  <tabstop>rfgenPB_2</tabstop>
+  <tabstop>rgfileLE</tabstop>
+  <tabstop>rgfileTB</tabstop>
+  <tabstop>rginPB</tabstop>
+  <tabstop>tySB</tabstop>
+  <tabstop>tmSB</tabstop>
+  <tabstop>tdSB</tabstop>
+  <tabstop>thSB</tabstop>
+  <tabstop>tmmSB</tabstop>
+  <tabstop>tsSB</tabstop>
+  <tabstop>tmsSB</tabstop>
+  <tabstop>rz1useCB</tabstop>
+  <tabstop>rz2useCB</tabstop>
+  <tabstop>rz3useCB</tabstop>
+  <tabstop>rzbLE</tabstop>
+  <tabstop>rzpLE</tabstop>
+  <tabstop>rzqLE</tabstop>
+  <tabstop>rzjLE</tabstop>
+  <tabstop>rzfLE</tabstop>
+  <tabstop>rzdLE</tabstop>
+  <tabstop>rduseCB</tabstop>
+  <tabstop>rdhLE</tabstop>
+  <tabstop>rdjLE</tabstop>
+  <tabstop>rdwLE</tabstop>
+  <tabstop>rminPB</tabstop>
+  <tabstop>rzmCO</tabstop>
+  <tabstop>rzminPB</tabstop>
+  <tabstop>rxfLE</tabstop>
+  <tabstop>rxzLE</tabstop>
+  <tabstop>rxinPB</tabstop>
+  <tabstop>ryfLE</tabstop>
+  <tabstop>ryzLE</tabstop>
+  <tabstop>rynLE</tabstop>
+  <tabstop>rysLE</tabstop>
+  <tabstop>sTabW</tabstop>
+  <tabstop>saxLE</tabstop>
+  <tabstop>sayLE</tabstop>
+  <tabstop>sazLE</tabstop>
+  <tabstop>szsendPB</tabstop>
+  <tabstop>sdxLE</tabstop>
+  <tabstop>sdyLE</tabstop>
+  <tabstop>sdsendPB</tabstop>
+  <tabstop>srfixCB</tabstop>
+  <tabstop>srtextCB</tabstop>
+  <tabstop>srsendPB</tabstop>
+  <tabstop>stfixCB</tabstop>
+  <tabstop>sttestCB</tabstop>
+  <tabstop>stsendPB</tabstop>
+ </tabstops>
  <resources>
   <include location="interfaceclient.qrc"/>
  </resources>

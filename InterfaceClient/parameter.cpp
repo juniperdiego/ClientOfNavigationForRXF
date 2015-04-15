@@ -32,3 +32,8 @@ void InterfaceClient::onPMeasureClick()
 {
 
 }
+
+void InterfaceClient::rcvPState()
+{
+
+}

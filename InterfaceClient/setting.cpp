@@ -44,3 +44,4 @@ void InterfaceClient::onSRSendClick()
 void InterfaceClient::onSTSendClick()
 {
 }
+

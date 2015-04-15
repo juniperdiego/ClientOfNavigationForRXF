@@ -82,7 +82,7 @@ void DataGenDialog::onFGenFileClick()
 	char* buf = new char[LEN_DATA];
 	memset(buf, 0, LEN_DATA);
 	craft.generate(buf, size);
-	m_craftModel->setNewPackage(buf);
+	m_craftModel->setNewPackage(buf, size);
 
 	QByteArray byteArr(buf, size);
 	//qDebug()<<byteArr.toHex();

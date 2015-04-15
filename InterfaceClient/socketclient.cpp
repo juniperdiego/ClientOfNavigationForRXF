@@ -32,29 +32,17 @@ void SocketClient::restart()
 
 void SocketClient::logConnection()
 {
-	QTextCodec * codec =QTextCodec::codecForName("GB18030");
-	QString info;
-
-	info=codec->toUnicode("Socket连接成功 HOST：%1 PORT：%2").arg(m_host).arg(m_port);
-	m_parent->logInfo(info);
+	m_parent->logInfo(toString("Socket连接成功 HOST：%1 PORT：%2").arg(m_host).arg(m_port));
 }
 
 void SocketClient::logError(QAbstractSocket::SocketError socketError)
 {
-	QTextCodec * codec =QTextCodec::codecForName("GB18030");
-	QString info;
-
-	info=codec->toUnicode("Socket错误代码-%1 HOST：%2 PORT：%3").arg(socketError).arg(m_host).arg(m_port);
-	m_parent->logError(info);
+	m_parent->logError(toString("Socket错误代码-%1 HOST：%2 PORT：%3").arg(socketError).arg(m_host).arg(m_port));
 }
 
 void SocketClient::logDisconnection()
 {
-	QTextCodec * codec =QTextCodec::codecForName("GB18030");
-	QString info;
 
-	info=toString("Socket失去连接 HOST：%1 PORT：%2").arg(m_host).arg(m_port);
-	m_parent->logWarning(info);
-
+	m_parent->logWarning(toString("Socket失去连接 HOST：%1 PORT：%2").arg(m_host).arg(m_port));
 
 }
