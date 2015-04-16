@@ -70,3 +70,26 @@ PixelArray::~PixelArray()
 {
 
 }
+
+void PixelArray::setAngleAndStates(const vector<float>& angles, const vector<bool>& states)
+{
+	int aSize = angles.size();
+	int sSize = states.size();
+	if (aSize != sSize) return;
+
+	int size = qMin(aSize, m_pixels.count());
+	
+	for(int i=0; i<size; i++) 
+    { 
+        m_pixels[i]->setAngleAndState(angles[i], states[i]); 
+    }
+}
+
+void PixelArray::getAngleAndStates(vector<float>& angles, vector<bool>& states)
+{
+	for(int i=0; i<m_pixels.count(); i++) 
+    { 
+		angles.push_back(m_pixels[i]->getAngle()); 
+		states.push_back(m_pixels[i]->getState()); 
+    }
+}

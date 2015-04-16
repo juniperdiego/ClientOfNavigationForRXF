@@ -36,7 +36,7 @@ Pixel::Pixel(const QString& value, bool valid, int mode, const QSize& size, QWid
 
 	m_label->installEventFilter(this);
 
-	setValid(m_valid);
+	setState(m_valid);
 
 	connect(m_edit, SIGNAL(editingFinished()), this, SLOT(onEditingFinished()));
 	connect(m_edit, SIGNAL(returnPressed()), this, SLOT(onEditingFinished()));
@@ -62,7 +62,7 @@ bool Pixel::eventFilter(QObject* o, QEvent* e)
 		}
 		else if (o == m_label && m_mode != -1 && event->button() == Qt::RightButton)
 		{
-			setValid(!m_valid);
+			setState(!m_valid);
 		}
 	}
 
@@ -76,18 +76,25 @@ void Pixel::onEditingFinished()
 	m_label->setVisible(true);
 }
 
-void Pixel::setValid(bool valid)
+void Pixel::setState(bool valid)
 {
 	m_valid = valid;
 	setStyleSheet(m_valid ? cValidStyle : cInvalidStyle);
 }
 
-QString Pixel::getAngleStr()
+float Pixel::getAngle()
 {
 	if (m_edit->isVisible())
-		return m_edit->text();
+		return m_edit->text().toFloat();
 
-	return m_label->text();
+	return m_label->text().toFloat();
+}
+
+
+void Pixel::setAngleAndState(float angle, bool state)
+{
+	m_label->setText(QString::number(angle, 'f'));
+	setState(state);
 }
 
 

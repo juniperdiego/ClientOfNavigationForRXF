@@ -22,9 +22,10 @@ public:
 	Pixel(const QString& value, bool valid, int mode, const QSize& size = cDefSSize, QWidget *parent = NULL);
 	~Pixel();
 
-	void setValid(bool valid);
-	bool getValid() {return m_valid;}
-	QString getAngleStr();
+	void setState(bool valid);
+	bool getState() {return m_valid;}
+	float getAngle();
+	void setAngleAndState(float angle, bool state);
 
 protected:
 	bool eventFilter(QObject* o, QEvent* e);
