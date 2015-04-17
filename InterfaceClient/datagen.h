@@ -5,7 +5,7 @@ class dataGen
 {
 public:
 	dataGen(char dataHeader, char cmd, char dataLen);
-	~dataGen();
+	virtual ~dataGen();
 	virtual void generate(char *buf, int size) =0;
 	int getBufSize();
 protected:

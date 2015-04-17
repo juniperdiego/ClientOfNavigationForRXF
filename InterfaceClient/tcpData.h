@@ -8,7 +8,7 @@ class tcpData
 {
 public:
 	tcpData(char dataHeader, char cmd, char dataLen);
-	~tcpData();
+	virtual ~tcpData();
 	virtual vector<int>  generate() =0;
 	int getDataSize();
 protected:

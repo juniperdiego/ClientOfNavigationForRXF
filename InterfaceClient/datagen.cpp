@@ -185,5 +185,10 @@ void dataGenForBroadcast::setHMS(int h, int m, int s, int ms)
 
 void dataGenForBroadcast::generate(char *buf, int size)
 {
-	//TODO
+	buf[0] = (m_year >> 4) & 0xff;
+	buf[1] = ((m_year & 0xf) << 4) | m_month;
+	buf[2] = ((m_day & 0x1f) << 3) | ((m_hour  & 0x1f) >> 2);
+	buf[3] = ((m_hour& 0x3) << 6) | (m_min  & 0x3f) ;
+	buf[4] = ((m_sec& 0x1f) << 2) | ((m_msec) >> 8 );
+	buf[5] = m_msec & 0xff ;
 }
