@@ -36,6 +36,7 @@ private:
 	Ui::DataGenDialog ui;
 
 	SourceCodeModel* m_craftModel;
+	SourceCodeModel* m_broadcastModel;
 	QDoubleValidator* m_angleV;
 	QDoubleValidator* m_angleSV;
 };

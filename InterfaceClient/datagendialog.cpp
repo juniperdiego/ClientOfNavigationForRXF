@@ -35,6 +35,10 @@ DataGenDialog::DataGenDialog(QWidget *parent)
 	ui.ffTableView->setModel(m_craftModel);
 	ui.ffTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
+	m_broadcastModel = new SourceCodeModel(LEN_DATA, 16, false, this); 
+	ui.gfTableView->setModel(m_broadcastModel);
+	ui.gfTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
 	connect(ui.fgenfilePB, SIGNAL(clicked()), this, SLOT(onFGenFileClick()));
 	connect(ui.ggenfilePB, SIGNAL(clicked()), this, SLOT(onGGenFileClick()));
 
@@ -148,7 +152,7 @@ void DataGenDialog::onFGenFileClick()
 	QDir curPath;
 	curPath.mkdir("DATA");
 	curPath.cd("DATA");
-    QString fileName = QFileDialog::getSaveFileName(this, toString("保存数据文件"),
+    QString fileName = QFileDialog::getSaveFileName(this, toString("保存飞行器数据文件"),
                            curPath.absolutePath(), tr("DAT (*.dat)"));
 	if (!fileName.endsWith(".dat", Qt::CaseInsensitive)) return;
 
@@ -160,12 +164,29 @@ void DataGenDialog::onFGenFileClick()
 
 void DataGenDialog::onGGenFileClick()
 {
+	dataGenForBroadcast broadcast;
+	broadcast.setYMD(ui.tySB->value(), ui.tmSB->value(), ui.tdSB->value());
+	broadcast.setHMS(ui.thSB->value(), ui.tmmSB->value(), ui.tsSB->value(), ui.tmsSB->value());
+
+	int size = broadcast.getBufSize();
+	char* buf = new char[LEN_DATA];
+	memset(buf, 0, LEN_DATA);
+	broadcast.generate(buf, size);
+	m_broadcastModel->setNewPackage(buf, size);
+
+	QByteArray byteArr(buf, size);
+	//qDebug()<<byteArr.toHex();
+
 	QDir curPath;
 	curPath.mkdir("DATA");
 	curPath.cd("DATA");
-    QString fileName = QFileDialog::getSaveFileName(this, toString("保存数据文件"),
+    QString fileName = QFileDialog::getSaveFileName(this, toString("保存广播数据文件"),
                            curPath.absolutePath(), tr("DAT (*.dat)"));
 	if (!fileName.endsWith(".dat", Qt::CaseInsensitive)) return;
-    
-	qDebug()<<fileName;
+
+	QFile file(fileName);
+    file.open(QIODevice::WriteOnly);
+    file.write(byteArr);
+    file.close();
+
 }

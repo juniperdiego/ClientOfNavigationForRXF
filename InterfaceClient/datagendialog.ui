@@ -642,13 +642,13 @@ color:rgb(84, 86, 82);                                                          
             <enum>QAbstractSpinBox::NoButtons</enum>
            </property>
            <property name="minimum">
-            <number>2000</number>
+            <number>2014</number>
            </property>
            <property name="maximum">
             <number>3000</number>
            </property>
            <property name="value">
-            <number>2015</number>
+            <number>2014</number>
            </property>
           </widget>
          </item>
@@ -667,7 +667,7 @@ color:rgb(84, 86, 82);                                                          
             <number>1</number>
            </property>
            <property name="value">
-            <number>4</number>
+            <number>1</number>
            </property>
           </widget>
          </item>
@@ -683,7 +683,7 @@ color:rgb(84, 86, 82);                                                          
             <number>31</number>
            </property>
            <property name="value">
-            <number>12</number>
+            <number>1</number>
            </property>
           </widget>
          </item>
@@ -696,7 +696,7 @@ color:rgb(84, 86, 82);                                                          
             <number>24</number>
            </property>
            <property name="value">
-            <number>10</number>
+            <number>0</number>
            </property>
           </widget>
          </item>
@@ -709,7 +709,7 @@ color:rgb(84, 86, 82);                                                          
             <number>60</number>
            </property>
            <property name="value">
-            <number>18</number>
+            <number>0</number>
            </property>
           </widget>
          </item>
@@ -722,7 +722,7 @@ color:rgb(84, 86, 82);                                                          
             <number>60</number>
            </property>
            <property name="value">
-            <number>16</number>
+            <number>0</number>
            </property>
           </widget>
          </item>
@@ -735,7 +735,7 @@ color:rgb(84, 86, 82);                                                          
             <number>1000</number>
            </property>
            <property name="value">
-            <number>666</number>
+            <number>0</number>
            </property>
           </widget>
          </item>
@@ -761,7 +761,29 @@ color:rgb(84, 86, 82);                                                          
           <number>4</number>
          </property>
          <item>
-          <widget class="QTextEdit" name="gfTE"/>
+          <widget class="QTableView" name="gfTableView">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>240</width>
+             <height>0</height>
+            </size>
+           </property>
+           <attribute name="horizontalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="verticalHeaderDefaultSectionSize">
+            <number>25</number>
+           </attribute>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -890,7 +912,6 @@ color:rgb(84, 86, 82);                                                          
   <tabstop>tmsSB</tabstop>
   <tabstop>ggenfilePB</tabstop>
   <tabstop>closePB</tabstop>
-  <tabstop>gfTE</tabstop>
  </tabstops>
  <resources/>
  <connections>
