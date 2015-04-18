@@ -42,7 +42,6 @@ QVariant SourceCodeModel::data(const QModelIndex & index, int role) const
 	if(!index.isValid()) return QVariant();
 	int col=index.column();
 	int row=index.row();
-	qDebug()<<row<<col;
 	if(role==Qt::DisplayRole)
 	{
 		int i=row*m_col+col;

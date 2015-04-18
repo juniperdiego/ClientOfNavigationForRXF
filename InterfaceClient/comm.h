@@ -29,4 +29,13 @@ QString toString(const QByteArray& str)
 	return codec->toUnicode(str);
 }
 
+inline
+bool isZero(float value)
+{
+	if(value > -1E6 && value < 1E6)
+		return true;
+
+	return false;
+}
+
 #endif // COMMON_H

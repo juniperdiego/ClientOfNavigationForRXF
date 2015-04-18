@@ -20,7 +20,10 @@ public:
 	~DataGenDialog();
 
 public:
+	bool isOnTrack() {return ui.fdzRB->isChecked();}
 	void setIsOnTrack(bool isOnTrack);
+
+	bool checkInputValue(QLineEdit* inputLE, float bottom, float top, int prec, float lsb);
 
 private slots:
 	void onFGenFileClick();
@@ -33,6 +36,8 @@ private:
 	Ui::DataGenDialog ui;
 
 	SourceCodeModel* m_craftModel;
+	QDoubleValidator* m_angleV;
+	QDoubleValidator* m_angleSV;
 };
 
 #endif // DATAGEN_H
