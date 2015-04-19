@@ -50,6 +50,7 @@ void InterfaceClient::onRFIntoClick()
 	file.open(QIODevice::ReadOnly);
     QByteArray inData = file.readAll();
     qDebug()<<"from file"<<inData.toHex();
+
 }
 
 void InterfaceClient::onRGBroClick()

@@ -38,4 +38,23 @@ bool isZero(float value)
 	return false;
 }
 
+inline
+uchar revChar(uchar c)
+{
+    c = (c & 0xaa) >> 1 | (c & 0x55) << 1;
+    c = (c & 0xcc) >> 2 | (c & 0x33) << 2;
+    c = (c & 0xf0) >> 4 | (c & 0x0f) << 4;
+
+    return c;
+}
+
+inline
+void revBuf(char* buf, int size)
+{
+	for (int i = 0; i < size; ++i)
+	{
+		buf[i] = revChar(buf[i]);
+	}
+}
+
 #endif // COMMON_H

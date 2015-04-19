@@ -1,6 +1,43 @@
 #include "datagendialog.h"
 #include "dataGen.h"
 
+int byte2hex(const char src[], char dst[], int *length)
+{
+        int i,j,k;
+        unsigned char temp[8];
+        if(*length%8 != 0)
+        {
+			return -1;
+        }
+        for(i=0,k=0; i< *length; i++)
+        {
+                j = i % 8;
+                temp[j] = ((src[i] - '0') << (7-j));
+                if(j == 7)
+                        dst[k++] = temp[0]|temp[1]|temp[2]|temp[3]|temp[4]|temp[5]|temp[6]|temp[7];
+        }
+        *length = *length/8;
+        return 0;
+}
+
+char *revstr(char *str, size_t len)
+{
+
+    char    *start = str;
+    char    *end = str + len - 1;
+    char    ch;
+
+    if (str != NULL)
+    {
+        while (start < end)
+        {
+            ch = *start;
+            *start++ = *end;
+            *end-- = ch;
+        }
+    }
+    return str;
+}
 
 DataGenDialog::DataGenDialog(QWidget *parent)
 	: QDialog(parent)
@@ -175,7 +212,11 @@ void DataGenDialog::onGGenFileClick()
 	m_broadcastModel->setNewPackage(buf, size);
 
 	QByteArray byteArr(buf, size);
-	//qDebug()<<byteArr.toHex();
+	qDebug()<<"source buf = "<<byteArr.toHex();
+
+	revBuf(buf,size);
+	QByteArray revArr(buf,size);
+	qDebug()<<"reverse buf = "<<revArr.toHex();
 
 	QDir curPath;
 	curPath.mkdir("DATA");
@@ -188,5 +229,4 @@ void DataGenDialog::onGGenFileClick()
     file.open(QIODevice::WriteOnly);
     file.write(byteArr);
     file.close();
-
 }
