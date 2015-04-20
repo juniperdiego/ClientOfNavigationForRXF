@@ -12,7 +12,7 @@
 const QSize cDefSSize = QSize(40, 20);
 const QSize cDefLSize = QSize(80, 40);
 
-//mode 0:readonly 1:editable -1:sample
+//mode 0:change 1:edit 2:edit/change -1:sample
 
 class Pixel : public QFrame
 {

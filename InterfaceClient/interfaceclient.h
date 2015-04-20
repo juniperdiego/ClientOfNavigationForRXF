@@ -58,6 +58,7 @@ public slots:
 	void onPMeasureClick();
 
 	//Return
+	void onAvailToggled(bool);
 	void onRFBroClick();
 	void onRFIntoClick();
 	void onRGBroClick();

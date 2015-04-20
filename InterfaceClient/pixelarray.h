@@ -11,7 +11,7 @@ class PixelArray : public QWidget
 	Q_OBJECT
 
 public:
-	PixelArray(int row, int col, bool isEdit, bool showHeader = true, QWidget *parent = NULL);
+	PixelArray(int row, int col, int mode, bool showHeader = true, QWidget *parent = NULL);
 	~PixelArray();
 
 	void setAngleAndStates(const vector<float>& angles, const vector<bool>& states);

@@ -28,6 +28,26 @@ void InterfaceClient::initReturn()
 	connect(ui.rminPB, SIGNAL(clicked()), this, SLOT(onRMIntoClick()));
 	connect(ui.rzminPB, SIGNAL(clicked()), this, SLOT(onRZMIntoClick()));
 	connect(ui.rxinPB, SIGNAL(clicked()), this, SLOT(onRXIntoClick()));
+
+	connect(ui.rz1useCB, SIGNAL(toggled(bool)), this, SLOT(onAvailToggled(bool)));
+	connect(ui.rz2useCB, SIGNAL(toggled(bool)), this, SLOT(onAvailToggled(bool)));
+	connect(ui.rz3useCB, SIGNAL(toggled(bool)), this, SLOT(onAvailToggled(bool)));
+	connect(ui.rduseCB, SIGNAL(toggled(bool)), this, SLOT(onAvailToggled(bool)));
+}
+
+void InterfaceClient::onAvailToggled(bool state)
+{
+	if (state)
+	{
+		QList<QAbstractButton*> buttons = ui.availBG->buttons();
+		for (int i = 0; i <buttons.count(); ++i)
+		{
+			if (buttons[i] != sender())
+			{
+				buttons[i]->setChecked(false);
+			}
+		}
+	}
 }
 
 void InterfaceClient::onRFBroClick()

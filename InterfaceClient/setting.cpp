@@ -12,14 +12,14 @@ void InterfaceClient::initSetting()
 	//init R
 	QHBoxLayout* rLayout = new QHBoxLayout;
 	rLayout->setMargin(0);
-	m_srCom = new PixelArray(6, 6, true, false);
+	m_srCom = new PixelArray(6, 6, 0, false);
 	rLayout->addWidget(m_srCom);
 	ui.srW->setLayout(rLayout);
 
 	//init T
 	QHBoxLayout* tLayout = new QHBoxLayout;
 	tLayout->setMargin(0);
-	m_stCom = new PixelArray(16, 16, true, false);
+	m_stCom = new PixelArray(16, 16, 2, false);
 	tLayout->addWidget(m_stCom);
 	ui.stW->setLayout(tLayout);
 

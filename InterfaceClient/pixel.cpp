@@ -53,14 +53,14 @@ bool Pixel::eventFilter(QObject* o, QEvent* e)
 	if (o == m_label && e->type() == QEvent::MouseButtonRelease)
 	{
 		QMouseEvent* event = dynamic_cast<QMouseEvent*>(e);
-		if (m_mode == 1 && event->button() == Qt::LeftButton)
+		if (m_mode > 0 && event->button() == Qt::LeftButton)
 		{
 			m_label->setVisible(false);
 			m_edit->setText(m_label->text());
 			m_edit->setVisible(true);
 			m_edit->setFocus();
 		}
-		else if (o == m_label && m_mode != -1 && event->button() == Qt::RightButton)
+		else if (o == m_label && (m_mode == 2 || m_mode == 0) && event->button() == Qt::RightButton)
 		{
 			setState(!m_valid);
 		}
