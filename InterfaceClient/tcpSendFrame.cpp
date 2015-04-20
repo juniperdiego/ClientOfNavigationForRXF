@@ -23,11 +23,11 @@ remoteParamSendFrame::remoteParamSendFrame()
 	m_frameLen = 0; //mark it is invalid 
 }
 
-void remoteParamSendFrame::setMode(bool mode)
+void remoteParamSendFrame::setMode(bool isWorkMode)
 {
-	m_mode = mode;
+	m_mode = isWorkMode;
 
-	if(mode == false)
+	if(m_mode == false)
 		m_frameLen = 4 * 6;
 	else
 		m_frameLen = 4 * 5;

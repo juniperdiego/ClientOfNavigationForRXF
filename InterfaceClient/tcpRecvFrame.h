@@ -8,7 +8,8 @@ class tcpRecvFrame
 public:
 	tcpRecvFrame();
 	virtual ~tcpRecvFrame();
-	bool parseRecvTcpFrame(int* frame, int frameLen);// frameLen based on bytes
+	bool	parseRecvTcpFrame(int* frame, int frameLen);// frameLen based on bytes
+	int		getFrameLen();
 protected:
 	virtual bool parseRecvTcpData(int* data, int dataLen);//dataLen based on int
 protected:

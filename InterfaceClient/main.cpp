@@ -39,8 +39,17 @@ int main(int argc, char *argv[])
 
 #ifdef UT
 	test_dataGenForAerocraft();
+	return 0;	
+	
+	
+	int aaa = 0xC1480000;//12.5
+	float *fp = (float*) (&aaa);
+
+	qDebug() << *fp ;
 	return 0;
 #endif
+
+
 
 	InterfaceClient w;
 	w.show();

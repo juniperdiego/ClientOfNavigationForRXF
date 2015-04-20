@@ -1,4 +1,6 @@
 #include "interfaceclient.h"
+#include "tcpSendFrame.h"
+
 
 void InterfaceClient::initPara()
 {
@@ -20,7 +22,18 @@ void InterfaceClient::initPara()
 
 void InterfaceClient::onPModeSendClick()
 {
+	remoteParamSendFrame rpSF;
 
+	rpSF.setMode(ui.pmodeCO->currentIndex() == 0);
+
+	vector<int> frame = rpSF.generateFrame();
+
+	int *packet = new int[frame.size()];
+
+	for(int i = 0; i < frame.size(); i++)
+		packet[i] = frame[i];
+
+	m_socketP->write((char*)packet, frame.size() * sizeof(int));
 }
 
 void InterfaceClient::onPResetClick()

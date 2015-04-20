@@ -11,6 +11,11 @@ tcpRecvFrame::~tcpRecvFrame()
 {
 }
 
+int tcpRecvFrame::getFrameLen()
+{
+	return m_frameLen;
+}
+
 bool tcpRecvFrame::parseRecvTcpFrame(int* frame, int frameLen)
 {
 	if(frame == NULL)
