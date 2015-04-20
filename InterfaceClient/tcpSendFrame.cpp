@@ -217,15 +217,20 @@ vector<int> groundInjectParamSendFrame::generateGroundInfo()
 
 vector<int> groundInjectParamSendFrame::generateFrame()
 {
-	m_frameEndTag = (89 + 5) * 4;
+	m_frameLen = (89 + 5) * 4;//dataLen(85) + header(3) + mode(1) + endTag(1)
 
 	vector<int>  res;
+	const int dataBegin = 3 + 1 + 3;//
 
 	res.push_back(m_frameStartTag);
 	res.push_back(m_frameLen);
 	res.push_back(m_reserveInt);
 
 	res.push_back(1);// mode = 1;
+
+	res.push_back(0x91);// dataHeader
+	res.push_back(0x96);// data cmd
+	res.push_back(0x55);// data length 
 
 #if 0
 时刻中
@@ -244,7 +249,7 @@ vector<int> groundInjectParamSendFrame::generateFrame()
 	byte 1: b15 ~ b8
 	byte 0: b7 ~ b0
 #endif
-	// 1 时间信息
+	// 1 起始时刻, 6 bytes
 	res.push_back( static_cast<int> ((m_year >> 4) & 0xff));
 	res.push_back( static_cast<int> ( ((m_year & 0xf) << 4) | m_month));
 	res.push_back( static_cast<int> ( ((m_day & 0x1f) << 3) | ((m_hour  & 0x1f) >> 2)));
@@ -252,7 +257,7 @@ vector<int> groundInjectParamSendFrame::generateFrame()
 	res.push_back( static_cast<int> ( ((m_sec& 0x1f) << 2) | ((m_msec) >> 8 )));
 	res.push_back( static_cast<int> ( m_msec & 0xff ));
 
-	//2 卫星信息 & 地面站信息
+	//2 卫星信息 & 地面站信息, 4* 6 * 3 bytes + 2 * 3 bytes
 	vector<int> satelliteInfo = generateSatelliteInfo();
 	if(m_whichAvail == 0x11)
 	{
@@ -325,7 +330,98 @@ vector<int> groundInjectParamSendFrame::generateFrame()
 	//3. 可用信息
 	res.push_back(static_cast<int>(m_whichAvail));
 
+	// calc crc
+	int crc = 0;
+	for(int i = dataBegin; i < res.size(); i ++)
+		crc = crc ^ res[i];
+
+	res.push_back(crc);
 	res.push_back(m_frameEndTag);
 
 	return res;
 }
+
+void aerocraftDirectionSendFrame::set(bool isTrackCalc)
+{
+	m_isTrackCalc = isTrackCalc;
+}
+
+vector<int> aerocraftDirectionSendFrame::generateFrame()
+{	
+	m_frameLen = ( 3+ 1 + 1 + 5) * 4;//3 header + 1 mod + 1 end + 5 data
+	vector<int>  res;
+	const int dataBegin = 3 + 1 + 3;//
+
+	res.push_back(m_frameStartTag);
+	res.push_back(m_frameLen);
+	res.push_back(m_reserveInt);
+
+	res.push_back(4);// mode = 4;
+
+	res.push_back(0x91);// dataHeader
+	res.push_back(0x3c);// data cmd
+	res.push_back(0x01);// data length 
+
+	//data
+	if(m_isTrackCalc == true)
+		res.push_back(0x0f);
+	else
+		res.push_back(0xf0);
+
+	// crc
+	if(m_isTrackCalc == true)
+		res.push_back(0x0f);
+	else
+		res.push_back(0xf0);
+
+	//end tag
+	res.push_back(m_frameEndTag);
+
+	return res;
+}
+
+void phasedArrayRadaSendFrame::setCenterDegree(float c)
+{
+	m_centerDegree = c;
+}
+
+void phasedArrayRadaSendFrame::setDirectionDegree(float c)
+{
+	m_directionDegree = c;
+}
+
+vector<int> phasedArrayRadaSendFrame::generateFrame()
+{
+	m_frameLen = ( 3+ 1 + 1 + 5) * 4;//3 header + 1 mod + 1 end + 5 data
+	vector<int>  res;
+	const int dataBegin = 3 + 1 + 3;//
+
+	res.push_back(m_frameStartTag);
+	res.push_back(m_frameLen);
+	res.push_back(m_reserveInt);
+
+	res.push_back(3);// mode = 3;
+
+	res.push_back(0x91);// dataHeader
+	res.push_back(0xc3);// data cmd
+	res.push_back(0x03);// data length 
+
+	unsigned int cDegree = static_cast<unsigned int>(m_centerDegree/0.1f);
+	unsigned int dDegree = static_cast<unsigned int>(m_directionDegree/0.1f);
+	res.push_back(cDegree >> 4);
+	res.push_back((cDegree & 0xf) << 4 | (dDegree >> 8) );
+	res.push_back(dDegree & 0xff);
+
+	// calc crc
+	int crc = 0;
+	for(int i = dataBegin; i < res.size(); i ++)
+		crc = crc ^ res[i];
+
+	res.push_back(crc);
+
+	//end tag
+	res.push_back(m_frameEndTag);
+
+	return res;
+}
+

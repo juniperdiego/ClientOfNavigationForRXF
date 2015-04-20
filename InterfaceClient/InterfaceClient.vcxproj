@@ -79,7 +79,7 @@
   <ItemGroup>
     <ClCompile Include="componentr.cpp" />
     <ClCompile Include="componentt.cpp" />
-    <ClCompile Include="dataGen.cpp" />
+    <ClCompile Include="datagen.cpp" />
     <ClCompile Include="datagendialog.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_datagendialog.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -171,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="comm.h" />
+    <ClInclude Include="datagen.h" />
     <ClInclude Include="tcpRecvFrame.h" />
     <ClInclude Include="tcpSendFrame.h" />
     <CustomBuild Include="sourcecodemodel.h">
@@ -204,7 +205,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtWidgets"</Command>
     </CustomBuild>
-    <ClInclude Include="dataGen.h" />
     <ClInclude Include="GeneratedFiles\ui_datagendialog.h" />
     <ClInclude Include="logmng.h" />
     <ClInclude Include="GeneratedFiles\ui_interfaceclient.h" />

@@ -119,6 +119,16 @@ bool injectParamRecvFrame::parseRecvTcpData(int* data, int dataLen)
 	return true;
 }
 
+float injectParamRecvFrame::getCenterDegree()
+{
+	return m_centerDegree;
+}
+
+float injectParamRecvFrame::getDirectionDegree()
+{
+	return m_directionDegree;
+}
+
 
 
 

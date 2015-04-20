@@ -33,21 +33,21 @@ public:
 };
 
 // for tab 测控参数注入以及返回
-// 飞行器自身参数
+//1.飞行器自身参数
 class aerocraftSendFrame: public tcpSendFrame
 {
 public:
 	vector<int> generateFrame(char* buf, int len);
 };
 
-//飞行器时间广播帧
+//2.广播时间信息
 class broadcastSendFrame: public tcpSendFrame
 {
 public:
 	vector<int> generateFrame(char* buf, int len);
 };
 
-//地面注入参数
+//3.地面注入参数
 class groundInjectParamSendFrame: public tcpSendFrame
 {
 public:
@@ -85,5 +85,26 @@ private:
 	char	m_whichAvail; // 0x11-卫星1 可用； 0x22-卫星2 可用；0x33-卫星三可用；0x44-地面站可用; 0x55-不可用
 };
 
+// 4.相控阵指向参数注入
+class phasedArrayRadaSendFrame: public tcpSendFrame
+{
+public:
+	vector<int> generateFrame();
+	void setCenterDegree(float c);
+	void setDirectionDegree(float c);
+private:
+	float 	m_centerDegree;
+	float 	m_directionDegree;
+
+};
+// 5.飞行器指向方式
+class aerocraftDirectionSendFrame: public tcpSendFrame
+{
+public:
+	vector<int> generateFrame();
+	void set(bool isTrackCalc);
+private:
+	bool	m_isTrackCalc;
+};
 
 #endif // TCP_SEND_FRAME_H
