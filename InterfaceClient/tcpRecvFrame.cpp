@@ -76,6 +76,11 @@ bool remoteParamRecvFrame::parseRecvTcpData(int* data, int dataLen)
 	return true;
 }
 
+vector<float> remoteParamRecvFrame::getParamVec()
+{
+	return m_paramVec;
+}
+
 injectParamRecvFrame::injectParamRecvFrame()
 {
 	m_frameLen = 4 * (4/*header+tail*/ + 1/*modeCode*/ + 11/*data*/); 

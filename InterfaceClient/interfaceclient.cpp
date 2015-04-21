@@ -50,12 +50,6 @@ InterfaceClient::InterfaceClient(QWidget *parent)
 	initSocket();
 
 	//test
-	addLog(LOG_TYPE_INFO, "adsadadfadf");
-	addLog(LOG_TYPE_WARNNING, "系统一切正常");
-	addLog(LOG_TYPE_ERROR, "系统出错");
-	addLog(LOG_TYPE_ERROR, "系统出错");
-	addLog(LOG_TYPE_ERROR, "系统出错");
-	addLog(LOG_TYPE_ERROR, "系统出错");
 	QString info = toString("Socket链接错误 %1 短裤 %2！").arg(10).arg(20);
 	logWarning(info);
 }
