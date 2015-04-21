@@ -64,9 +64,10 @@ void InterfaceServer::testPState() //²âÊÔ×´Ì¬²ÎÊı
 
 	QByteArray sendBytes;
 	QDataStream out(&sendBytes, QIODevice::WriteOnly);
+	out.setFloatingPointPrecision(QDataStream::SinglePrecision);
 	out<<TCP_FRAME_START_TAG;
-	out<<0;
 	out<<56;
+	out<<0;
 	out<<float(3.5);
 	out<<float(4.1);
 	out<<float(4.2);

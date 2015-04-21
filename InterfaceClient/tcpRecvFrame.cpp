@@ -1,4 +1,6 @@
 #include "tcpRecvFrame.h"
+#include <Winsock2.h>
+#pragma comment(lib,"ws2_32.lib")
 
 tcpRecvFrame::tcpRecvFrame()
 	:m_frameStartTag(TCP_FRAME_START_TAG),
@@ -20,6 +22,18 @@ bool tcpRecvFrame::parseRecvTcpFrame(int* frame, int frameLen)
 {
 	if(frame == NULL)
 		return false;
+
+		//network byte order to host byte order
+	for(int i = 0; i < frameLen/sizeof(int); i++)
+	{
+		frame[i] = ntohl(frame[i]);
+#if 0
+		if(i < 3 || i == (frameLen/sizeof(int) -1) )
+			qDebug() << frame[i];
+		else
+			qDebug() << *(float*)&(frame[i]);
+#endif
+	}
 
 	if(frame[0] != m_frameStartTag)
 		return false;
@@ -72,7 +86,10 @@ bool remoteParamRecvFrame::parseRecvTcpData(int* data, int dataLen)
 	m_paramVec.clear();
 
 	for(int i = 0; i < dataLen; i++)
+	{
 		m_paramVec.push_back(p[i]);
+		//qDebug() << "p[i]" << p[i];
+	}
 	return true;
 }
 
