@@ -131,6 +131,12 @@ void groundInjectParamSendFrame::setGroundParam(float p1, float p2, float p3)
 	m_groundParam2 = p2;
 	m_groundParam3 = p3;
 }
+
+void groundInjectParamSendFrame::setWhichAvail(char which)
+{
+	m_whichAvail = which;
+}
+
 vector<int> groundInjectParamSendFrame::generateSatelliteInfo()
 {
 	vector<int>  res;

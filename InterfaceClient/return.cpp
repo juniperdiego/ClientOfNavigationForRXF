@@ -1,4 +1,6 @@
 #include "interfaceclient.h"
+#include "tcpSendFrame.h"
+#include "tcpRecvFrame.h"
 
 void InterfaceClient::initReturn()
 {
@@ -50,15 +52,28 @@ void InterfaceClient::onAvailToggled(bool state)
 	}
 }
 
+char InterfaceClient::getWhichAvail()
+{
+	if (ui.rz1useCB->isChecked())
+		return 0x11;
+	else if (ui.rz2useCB->isChecked())
+		return 0x22;
+	else if (ui.rz3useCB->isChecked())
+		return 0x33;
+	else if (ui.rduseCB->isChecked())
+		return 0x44;
+	else
+		return 0x55;
+}
+
 void InterfaceClient::onRFBroClick()
 {
 	QDir path;
 	path.cd("DATA");
-    QString fileName = QFileDialog::getOpenFileName(this, toString("选择数据文件"),
+    QString fileName = QFileDialog::getOpenFileName(this, toString("选择飞行器数据文件"),
                            path.absolutePath(), tr("DAT (*.dat)"));
     if (!fileName.endsWith(".dat", Qt::CaseInsensitive)) return;
     ui.rffileLE->setText(fileName);
-
 }
 
 void InterfaceClient::onRFIntoClick()
@@ -67,17 +82,26 @@ void InterfaceClient::onRFIntoClick()
 	if (fileName.isEmpty())	return;
 
 	QFile file(fileName);
-	file.open(QIODevice::ReadOnly);
-    QByteArray inData = file.readAll();
-    qDebug()<<"from file"<<inData.toHex();
+	if (!file.open(QIODevice::ReadOnly))
+		return;
+    QByteArray fData = file.readAll();
 
+	aerocraftSendFrame aeSF;
+	vector<int> frame = aeSF.generateFrame(fData.data(), fData.size());
+
+	int *packet = new int[frame.size()];
+
+	for(int i = 0; i < frame.size(); i++)
+		packet[i] = frame[i];
+
+	m_socketS->write((char*)packet, frame.size() * sizeof(int));
 }
 
 void InterfaceClient::onRGBroClick()
 {
 	QDir path;
 	path.cd("DATA");
-    QString fileName = QFileDialog::getOpenFileName(this, toString("选择数据文件"),
+    QString fileName = QFileDialog::getOpenFileName(this, toString("选择广播数据文件"),
                            path.absolutePath(), tr("DAT (*.dat)"));
     if (!fileName.endsWith(".dat", Qt::CaseInsensitive)) return;
     ui.rgfileLE->setText(fileName);
@@ -85,22 +109,74 @@ void InterfaceClient::onRGBroClick()
 
 void InterfaceClient::onRGIntoClick()
 {
+	QString fileName = ui.rgfileLE->text();
+	if (fileName.isEmpty())	return;
 
+	QFile file(fileName);
+	if (!file.open(QIODevice::ReadOnly))
+		return;
+    QByteArray fData = file.readAll();
+
+	broadcastSendFrame bcSF;
+	vector<int> frame = bcSF.generateFrame(fData.data(), fData.size());
+
+	int *packet = new int[frame.size()];
+
+	for(int i = 0; i < frame.size(); i++)
+		packet[i] = frame[i];
+
+	m_socketS->write((char*)packet, frame.size() * sizeof(int));
 }
 
 void InterfaceClient::onRMIntoClick()
 {
+	groundInjectParamSendFrame gipSF;
+	gipSF.setYMD(ui.tySB->value(), ui.tmSB->value(), ui.tdSB->value());
+	gipSF.setHMS(ui.thSB->value(), ui.tmmSB->value(), ui.tsSB->value(), ui.tmsSB->value());
+	gipSF.setSatelliteParam(ui.rzbLE->text().toFloat(), ui.rzpLE->text().toFloat(), ui.rzqLE->text().toFloat(), 
+		ui.rzjLE->text().toFloat(), ui.rzfLE->text().toFloat(), ui.rzdLE->text().toFloat());
+	gipSF.setGroundParam(ui.rdhLE->text().toFloat(), ui.rdjLE->text().toFloat(), ui.rdwLE->text().toFloat());
+	gipSF.setWhichAvail(getWhichAvail());
 
+	vector<int> frame = gipSF.generateFrame();
+
+	int *packet = new int[frame.size()];
+
+	for(int i = 0; i < frame.size(); i++)
+		packet[i] = frame[i];
+
+	m_socketS->write((char*)packet, frame.size() * sizeof(int));
 }
 
 void InterfaceClient::onRZMIntoClick()
 {
+	aerocraftDirectionSendFrame adSF;
+	adSF.set(ui.rzmCO->currentIndex() == 0);
 
+	vector<int> frame = adSF.generateFrame();
+
+	int *packet = new int[frame.size()];
+
+	for(int i = 0; i < frame.size(); i++)
+		packet[i] = frame[i];
+
+	m_socketS->write((char*)packet, frame.size() * sizeof(int));
 }
 
 void InterfaceClient::onRXIntoClick()
 {
+	phasedArrayRadaSendFrame parSF;
+	parSF.setDirectionDegree(ui.rxfLE->text().toFloat());
+	parSF.setCenterDegree(ui.rxzLE->text().toFloat());
 
+	vector<int> frame = parSF.generateFrame();
+
+	int *packet = new int[frame.size()];
+
+	for(int i = 0; i < frame.size(); i++)
+		packet[i] = frame[i];
+
+	m_socketS->write((char*)packet, frame.size() * sizeof(int));
 }
 
 void InterfaceClient::setRWorkState(bool state)
@@ -110,5 +186,20 @@ void InterfaceClient::setRWorkState(bool state)
 
 void InterfaceClient::rcvSState()
 {
+	injectParamRecvFrame ipRF;
 
+	int bufSize = ipRF.getFrameLen();
+	char* buf = new char[bufSize];
+	if (m_socketP->read(buf, bufSize) != bufSize)
+		goto ERROR;
+
+	if (!ipRF.parseRecvTcpFrame((int*)buf, bufSize))
+		goto ERROR;
+
+	ui.ryfLE->setText(QString::number(ipRF.getDirectionDegree()));
+	ui.ryzLE->setText(QString::number(ipRF.getCenterDegree()));
+
+ERROR:
+	logError(toString("测控参数接收错误"));
+	return;
 }

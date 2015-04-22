@@ -31,12 +31,16 @@ public:
 	void logWarning(const QString& info) {addLog(LOG_TYPE_WARNNING, qPrintable(info));}
 	void logError(const QString& info) {addLog(LOG_TYPE_ERROR, qPrintable(info));}
 
-	//Return and Into
-	void setRWorkState(bool state);
-
 	//socket
 	void connectServer(const QString &ip);
 	void disconnectServer();
+
+	//Parameter
+	void setPState(const vector<float>& states);
+
+	//Return and Into
+	void setRWorkState(bool state);
+	char getWhichAvail();
 
 private:
 	void initPara();

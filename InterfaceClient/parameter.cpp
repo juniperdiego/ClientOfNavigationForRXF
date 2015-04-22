@@ -21,6 +21,20 @@ void InterfaceClient::initPara()
 	connect(ui.pmPB, SIGNAL(clicked()), this, SLOT(onPMeasureClick()));
 }
 
+void InterfaceClient::setPState(const vector<float>& states)
+{
+	ui.pv1LE->setText(QString::number(states[0]));
+	ui.pa1LE->setText(QString::number(states[1]));
+	ui.pa2LE->setText(QString::number(states[2]));
+	ui.pa3LE->setText(QString::number(states[3]));
+	ui.pa4LE->setText(QString::number(states[4]));
+	ui.pa5LE->setText(QString::number(states[5]));
+	ui.pc1LE->setText(QString::number(states[6]));
+	ui.pc2LE->setText(QString::number(states[7]));
+	ui.pc3LE->setText(QString::number(states[8]));
+	ui.pc4LE->setText(QString::number(states[9]));
+}
+
 void InterfaceClient::onPModeSendClick()
 {
 	remoteParamSendFrame rpSF;
@@ -39,51 +53,47 @@ void InterfaceClient::onPModeSendClick()
 
 void InterfaceClient::onPResetClick()
 {
+	remoteParamSendFrame rpSF;
 
+	rpSF.setAntennaPattern(true);
+
+	vector<int> frame = rpSF.generateFrame();
+
+	int *packet = new int[frame.size()];
+
+	for(int i = 0; i < frame.size(); i++)
+		packet[i] = frame[i];
+
+	m_socketP->write((char*)packet, frame.size() * sizeof(int));
 }
 
 void InterfaceClient::onPMeasureClick()
 {
 	QProcess::startDetached("InterfaceServer.exe");
-#if 0
-	QByteArray sendBytes;
-	QDataStream out(sendBytes);
-	out<<TCP_FRAME_START_TAG;
-	out<<2;
-	out<<3.5;
-	out<<4.6;
-	out<<TCP_FRAME_END_TAG;
-
-	m_socketP->write(sendBytes);
-#endif
 }
 
 void InterfaceClient::rcvPState()
 {
 	remoteParamRecvFrame rpRF;
+	vector<float> params;
 	int bufSize = rpRF.getFrameLen();
 	char* buf = new char[bufSize];
 	if (m_socketP->read(buf, bufSize) != bufSize)
-	{
-		logError(toString("数据接收错误"));
-		return;
-	}
+		goto ERROR;
 
-	QByteArray rcvBytes(buf, bufSize);
-	qDebug()<<rcvBytes.toHex();
-	QDataStream in(&rcvBytes, QIODevice::ReadOnly);
-
-	int header;
-	in>>header;
-	qDebug()<<header;
-
-	//下面这个函数有问题，头parse的就不对，你看一下
 	if (!rpRF.parseRecvTcpFrame((int*)buf, bufSize))
-	{
-		logError(toString("数据接收错误"));
-		return;
-	}
+		goto ERROR;
 
-	vector<float> params = rpRF.getParamVec();
-	qDebug()<<params[0];
+	params = rpRF.getParamVec();
+
+	if (params.size() != 10)
+		goto ERROR;
+
+	setPState(params);
+
+	return;
+
+ERROR:
+	logError(toString("状态参数接收错误"));
+	return;
 }
