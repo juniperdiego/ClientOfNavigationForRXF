@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>702</width>
-    <height>660</height>
+    <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,7 @@
       </property>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab0">
         <attribute name="title">
@@ -1810,11 +1810,56 @@ color:rgb(84, 86, 82);                                                          
                 <number>4</number>
                </property>
                <item row="0" column="0">
-                <widget class="QLabel" name="rstateL">
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
+                <layout class="QGridLayout" name="gridLayout_15">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_45">
+                   <property name="text">
+                    <string>状态来源：</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="avilableL">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabel" name="status1L">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>当前有效：</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_60">
+                   <property name="text">
+                    <string>在轨状态：</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QLabel" name="status2L">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </widget>

@@ -179,9 +179,19 @@ void InterfaceClient::onRXIntoClick()
 	m_socketS->write((char*)packet, frame.size() * sizeof(int));
 }
 
-void InterfaceClient::setRWorkState(bool state)
+void InterfaceClient::setRWorkState(char avilable, bool status1, bool status2)
 {
-	ui.rstateL->setText(state ? toString("天线收发工作模式") : toString("天线单发工作模式"));
+	switch (avilable)
+	{
+	case 0x0: ui.avilableL->setText(toString("地面站")); break;
+	case 0x1: ui.avilableL->setText(toString("中继星1#")); break;
+	case 0x2: ui.avilableL->setText(toString("中继星2#")); break;
+	case 0x3: ui.avilableL->setText(toString("中继星3#")); break;
+	default: break;
+	}
+
+	ui.status1L->setText(status1 ? toString("注入角度") : toString("星上计算"));
+	ui.status2L->setText(status2 ? toString("再入轨道") : toString("在轨运行"));
 }
 
 void InterfaceClient::rcvSState()
@@ -198,6 +208,9 @@ void InterfaceClient::rcvSState()
 
 	ui.ryfLE->setText(QString::number(ipRF.getDirectionDegree()));
 	ui.ryzLE->setText(QString::number(ipRF.getCenterDegree()));
+	ui.rynLE->setText(QString::number(ipRF.getTotalCmdNum()));
+	ui.rysLE->setText(QString::number(ipRF.getSuccessCmdNum()));
+	setRWorkState(ipRF.getWhichAvilable(), ipRF.getWorkingStatus1(), ipRF.getWorkingStatus2());
 
 ERROR:
 	logError(toString("测控参数接收错误"));

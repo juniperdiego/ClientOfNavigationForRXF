@@ -39,7 +39,7 @@ public:
 	void setPState(const vector<float>& states);
 
 	//Return and Into
-	void setRWorkState(bool state);
+	void setRWorkState(char avilable, bool status1, bool status2);
 	char getWhichAvail();
 
 private:

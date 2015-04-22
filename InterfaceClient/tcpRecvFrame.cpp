@@ -156,6 +156,29 @@ float injectParamRecvFrame::getDirectionDegree()
 	return m_directionDegree;
 }
 
+int injectParamRecvFrame::getTotalCmdNum()
+{
+	return m_totalCmdNum;
+}
 
+int injectParamRecvFrame::getSuccessCmdNum()
+{
+	return m_sucCmdNum;
+}
+
+char injectParamRecvFrame::getWhichAvilable()
+{
+	return m_whichAvilable;
+}
+
+bool injectParamRecvFrame::getWorkingStatus1()
+{
+	return m_workingStatus1 == 0x0;
+}
+
+bool injectParamRecvFrame::getWorkingStatus2()
+{
+	return m_workingStatus2 == 0x0;
+}
 
 
