@@ -50,7 +50,6 @@ int main(int argc, char *argv[])
 #endif
 
 
-
 	InterfaceClient w;
 	w.show();
 	return a.exec();

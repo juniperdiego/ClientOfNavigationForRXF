@@ -55,8 +55,8 @@ class injectParamRecvFrame: public tcpRecvFrame
 private:
 	float 	m_centerDegree;
 	float 	m_directionDegree;
-	char	m_totalCmdNum;
-	char	m_sucCmdNum;
+	int		m_totalCmdNum;
+	int		m_sucCmdNum;
 	char	m_whichAvilable;
 	char	m_workingStatus1;
 	char	m_workingStatus2;
@@ -66,6 +66,11 @@ public:
 	injectParamRecvFrame();
 	float getCenterDegree();
 	float getDirectionDegree();
+	int getTotalCmdNum();
+	int getSuccessCmdNum();
+	char getWhichAvilable();
+	bool getWorkingStatus1();
+	bool getWorkingStatus2();
 };
 
 
