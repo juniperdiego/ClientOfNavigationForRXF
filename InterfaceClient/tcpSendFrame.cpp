@@ -48,7 +48,7 @@ vector<int> remoteParamSendFrame::generateFrame()
 	if(m_mode == false)
 	{
 		res.push_back(0);
-		if(m_antennaPatern == false)
+		if(m_antennaPatern == true)
 			res.push_back(0);
 		else
 			res.push_back(1);

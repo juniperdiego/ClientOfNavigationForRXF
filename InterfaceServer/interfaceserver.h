@@ -20,18 +20,34 @@ public:
 
 
 public slots:
-	void newConnect();
+	void newConnect8000();
+	void newConnect8002();
+	void newConnect9000();
+	void newConnect9001();
+
+	void readMessage8000();
+	void readMessage8002();
+	void readMessage9000();
+	void readMessage9001();
+
 	void startTcpserver();
 	void sendMessage();
-	void readMessage();
 
 	void testPState();
 
 private:
 	Ui::InterfaceServerClass ui;
 
-	QTcpServer* m_tcpServer;
-	QTcpSocket* m_tcpSocket;
+	QTcpServer* m_tcpServer8000;//测试参数设置 T组件
+	QTcpServer* m_tcpServer8002;//测试参数设置 R组件
+	QTcpServer* m_tcpServer9000;//系统遥测遥控参数
+	QTcpServer* m_tcpServer9001;//测控参数注入及返回
+
+
+	QTcpSocket* m_tcpSocket8000;
+	QTcpSocket* m_tcpSocket8002;
+	QTcpSocket* m_tcpSocket9000;
+	QTcpSocket* m_tcpSocket9001;
 };
 
 #endif // INTERFACESERVER_H

@@ -2,6 +2,14 @@
 #include <Winsock2.h>
 #pragma comment(lib,"ws2_32.lib")
 
+void htonlArray(int *p, int size)
+{
+	for(int i = 0; i < size; i++)
+	{
+		p[i] = htonl(p[i]);
+	}
+}
+
 tcpRecvFrame::tcpRecvFrame()
 	:m_frameStartTag(TCP_FRAME_START_TAG),
 	m_reserveInt(0),

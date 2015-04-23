@@ -22,6 +22,9 @@ const int S_PORT=9001;
 const int ST_PORT=8000;
 const int SR_PORT=8002; 
 
+extern void htonlArray(int *p, int size);
+
+
 inline 
 QString toString(const QByteArray& str)
 {

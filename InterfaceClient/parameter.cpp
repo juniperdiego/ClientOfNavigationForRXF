@@ -39,7 +39,8 @@ void InterfaceClient::onPModeSendClick()
 {
 	remoteParamSendFrame rpSF;
 
-	rpSF.setMode(ui.pmodeCO->currentIndex() == 0);
+	rpSF.setMode(false);
+	rpSF.setAntennaPattern(ui.pmodeCO->currentIndex() == 0);
 
 	vector<int> frame = rpSF.generateFrame();
 
@@ -47,6 +48,8 @@ void InterfaceClient::onPModeSendClick()
 
 	for(int i = 0; i < frame.size(); i++)
 		packet[i] = frame[i];
+
+	htonlArray(packet, frame.size());
 
 	m_socketP->write((char*)packet, frame.size() * sizeof(int));
 }
@@ -55,7 +58,8 @@ void InterfaceClient::onPResetClick()
 {
 	remoteParamSendFrame rpSF;
 
-	rpSF.setAntennaPattern(true);
+	rpSF.setMode(true);
+	//rpSF.setAntennaPattern(ui.pmodeCO->currentIndex() == 0);
 
 	vector<int> frame = rpSF.generateFrame();
 
@@ -63,6 +67,8 @@ void InterfaceClient::onPResetClick()
 
 	for(int i = 0; i < frame.size(); i++)
 		packet[i] = frame[i];
+
+	htonlArray(packet, frame.size());
 
 	m_socketP->write((char*)packet, frame.size() * sizeof(int));
 }

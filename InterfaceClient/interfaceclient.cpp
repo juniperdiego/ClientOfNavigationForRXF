@@ -134,7 +134,7 @@ void InterfaceClient::initSocket()
 	m_socketT = new SocketClient(this);
 	connect(m_socketT, SIGNAL(readyRead()), this, SLOT(rcvTState()));
 	m_socketR = new SocketClient(this);
-	connect(m_socketT, SIGNAL(readyRead()), this, SLOT(rcvRState()));
+	connect(m_socketR, SIGNAL(readyRead()), this, SLOT(rcvRState()));
 	m_socketP = new SocketClient(this);
 	connect(m_socketP, SIGNAL(readyRead()), this, SLOT(rcvPState()));
 	m_socketS = new SocketClient(this);
