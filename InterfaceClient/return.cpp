@@ -91,6 +91,8 @@ void InterfaceClient::onRFIntoClick()
 
 	int *packet = new int[frame.size()];
 
+	htonlArray(packet, frame.size());
+
 	for(int i = 0; i < frame.size(); i++)
 		packet[i] = frame[i];
 
@@ -125,6 +127,8 @@ void InterfaceClient::onRGIntoClick()
 	for(int i = 0; i < frame.size(); i++)
 		packet[i] = frame[i];
 
+	htonlArray(packet, frame.size());
+
 	m_socketS->write((char*)packet, frame.size() * sizeof(int));
 }
 
@@ -145,6 +149,8 @@ void InterfaceClient::onRMIntoClick()
 	for(int i = 0; i < frame.size(); i++)
 		packet[i] = frame[i];
 
+	htonlArray(packet, frame.size());
+
 	m_socketS->write((char*)packet, frame.size() * sizeof(int));
 }
 
@@ -159,6 +165,8 @@ void InterfaceClient::onRZMIntoClick()
 
 	for(int i = 0; i < frame.size(); i++)
 		packet[i] = frame[i];
+
+	htonlArray(packet, frame.size());
 
 	m_socketS->write((char*)packet, frame.size() * sizeof(int));
 }
@@ -175,6 +183,8 @@ void InterfaceClient::onRXIntoClick()
 
 	for(int i = 0; i < frame.size(); i++)
 		packet[i] = frame[i];
+
+	htonlArray(packet, frame.size());
 
 	m_socketS->write((char*)packet, frame.size() * sizeof(int));
 }

@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
 
 
 	InterfaceClient win;
+	win.resize(800, 600);
 	win.move((app.desktop()->width() - win.width()) / 2, (app.desktop()->height() - win.height()) / 2);
 	win.show();
 	return app.exec();
