@@ -1,5 +1,6 @@
 #include "tcpSendFrame.h"
 
+
 tcpSendFrame::tcpSendFrame()
 	:m_frameStartTag(TCP_FRAME_START_TAG),
 	m_reserveInt(0),
@@ -426,6 +427,215 @@ vector<int> phasedArrayRadaSendFrame::generateFrame()
 	res.push_back(crc);
 
 	//end tag
+	res.push_back(m_frameEndTag);
+
+	return res;
+}
+
+
+bool compTCorrectionSendFrame::setDegree(vector<vector<float> > matrix)
+{
+	return m_ctc.setDegree(matrix);
+}
+
+bool compTCorrectionSendFrame::setEnable(vector<vector<bool> > matrix)
+{
+	return m_ctc.setEnable(matrix);
+}
+
+vector<int> compTCorrectionSendFrame::generateFrame()
+{
+	vector<int>  res;
+	vector<int> data = m_ctc.generate();
+
+	m_frameLen = (5+data.size()) * 4;
+	
+	res.push_back(m_frameStartTag);
+	res.push_back(m_frameLen);
+	res.push_back(m_reserveInt);
+	res.push_back(0);//模式码
+
+
+	for(int i = 0; i < data.size(); i++)
+	{
+		res.push_back(data[i]);
+	}
+
+	res.push_back(m_frameEndTag);
+
+	return res;
+}
+
+
+bool compTTestCodeSendFrame::setEnable(vector<vector<bool> > matrix)
+{
+	return m_ctt.setEnable(matrix);
+}
+
+vector<int> compTTestCodeSendFrame::generateFrame()
+{
+	vector<int>  res;
+	vector<int> data = m_ctt.generate();
+
+	m_frameLen = (5+data.size()) * 4;
+	
+	res.push_back(m_frameStartTag);
+	res.push_back(m_frameLen);
+	res.push_back(m_reserveInt);
+	res.push_back(1);//模式码
+
+
+	for(int i = 0; i < data.size(); i++)
+	{
+		res.push_back(data[i]);
+	}
+
+	res.push_back(m_frameEndTag);
+
+	return res;
+}
+
+bool compRCorrectionSendFrame::setDegree(vector<vector<float> > matrix)
+{
+	return m_crc.setDegree(matrix);
+}
+
+bool compRCorrectionSendFrame::setEnable(vector<vector<bool> > matrix)
+{
+	return m_crc.setEnable(matrix);
+}
+
+vector<int> compRCorrectionSendFrame::generateFrame()
+{
+	vector<int>  res;
+	vector<int> data = m_crc.generate();
+
+	m_frameLen = (5+data.size()) * 4;
+	
+	res.push_back(m_frameStartTag);
+	res.push_back(m_frameLen);
+	res.push_back(m_reserveInt);
+	res.push_back(0);//模式码
+
+
+	for(int i = 0; i < data.size(); i++)
+	{
+		res.push_back(data[i]);
+	}
+
+	res.push_back(m_frameEndTag);
+
+	return res;
+}
+
+
+bool compRTestCodeSendFrame::setEnable(vector<vector<bool> > matrix)
+{
+	return m_crt.setEnable(matrix);
+}
+
+vector<int> compRTestCodeSendFrame::generateFrame()
+{
+	vector<int>  res;
+	vector<int> data = m_crt.generate();
+
+	m_frameLen = (5+data.size()) * 4;
+	
+	res.push_back(m_frameStartTag);
+	res.push_back(m_frameLen);
+	res.push_back(m_reserveInt);
+	res.push_back(1);//模式码
+
+
+	for(int i = 0; i < data.size(); i++)
+	{
+		res.push_back(data[i]);
+	}
+
+	res.push_back(m_frameEndTag);
+
+	return res;
+}
+
+void compRInstallErrorSendFrame::set(float x, float y, float z)
+{
+	m_x = x;
+	m_y = y;
+	m_z = z;
+}
+
+vector<int> compRInstallErrorSendFrame::generateFrame()
+{
+	m_frameLen = (16+ 5) * 4;
+	vector<int>  res;
+
+	res.push_back(m_frameStartTag);
+	res.push_back(m_frameLen);
+	res.push_back(m_reserveInt);
+	res.push_back(2);//模式码
+
+	//data
+	res.push_back(0x92);
+	res.push_back(0xCA);
+	res.push_back(0xC0);
+	res.push_back((*(unsigned int*)(&m_x) >> 24) & 0xff);
+	res.push_back((*(unsigned int*)(&m_x) >> 16) & 0xff);
+	res.push_back((*(unsigned int*)(&m_x) >> 8) & 0xff);
+	res.push_back((*(unsigned int*)(&m_x) >> 0) & 0xff);
+	res.push_back((*(unsigned int*)(&m_y) >> 24) & 0xff);
+	res.push_back((*(unsigned int*)(&m_y) >> 16) & 0xff);
+	res.push_back((*(unsigned int*)(&m_y) >> 8) & 0xff);
+	res.push_back((*(unsigned int*)(&m_y) >> 0) & 0xff);
+	res.push_back((*(unsigned int*)(&m_z) >> 24) & 0xff);
+	res.push_back((*(unsigned int*)(&m_z) >> 16) & 0xff);
+	res.push_back((*(unsigned int*)(&m_z) >> 8) & 0xff);
+	res.push_back((*(unsigned int*)(&m_z) >> 0) & 0xff);
+
+	const int dataBegin = 3 + 1 + 3;
+	int crc = 0;
+	for(int i = dataBegin; i < res.size(); i ++)
+		crc = crc ^ res[i];
+
+	res.push_back(crc);
+	res.push_back(m_frameEndTag);
+
+	return res;
+}
+
+void compRFixPointSendFrame::set(float x, float y)
+{
+	m_x = x;
+	m_y = y;
+}
+
+vector<int> compRFixPointSendFrame::generateFrame()
+{
+	m_frameLen = (8 + 5) * 4;
+	vector<int>  res;
+
+	res.push_back(m_frameStartTag);
+	res.push_back(m_frameLen);
+	res.push_back(m_reserveInt);
+	res.push_back(3);//模式码
+
+	//data
+	res.push_back(0x92);
+	res.push_back(0xCD);
+	res.push_back(0x04);
+
+	unsigned int x = static_cast<int>(m_x/0.1f);
+	res.push_back((x >> 8) & 0xff);
+	res.push_back((x >> 0) & 0xff);
+	unsigned int y = static_cast<int>(m_y/0.1f);
+	res.push_back((y >> 8) & 0xff);
+	res.push_back((y >> 0) & 0xff);
+
+	const int dataBegin = 3 + 1 + 3;
+	int crc = 0;
+	for(int i = dataBegin; i < res.size(); i ++)
+		crc = crc ^ res[i];
+
+	res.push_back(crc);
 	res.push_back(m_frameEndTag);
 
 	return res;

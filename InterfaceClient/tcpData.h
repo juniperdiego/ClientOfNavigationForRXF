@@ -24,8 +24,8 @@ class compTCorrection : public tcpData
 public:
 	compTCorrection();
 	vector<int> generate();
-	void setDegree(vector<vector<float> > degreeMatrix);
-	void setEnable(vector<vector<bool> > enableMatrix);
+	bool setDegree(vector<vector<float> > degreeMatrix);
+	bool setEnable(vector<vector<bool> > enableMatrix);
 private:
 	vector<vector<float> > m_degreeMatrix;
 	vector<vector<bool> > m_enableMatrix;
@@ -36,8 +36,8 @@ class compRCorrection : public tcpData
 public:
 	compRCorrection();
 	vector<int> generate();
-	void setDegree(vector<vector<float> > degreeMatrix);
-	void setEnable(vector<vector<bool> > enableMatrix);
+	bool setDegree(vector<vector<float> > degreeMatrix);
+	bool setEnable(vector<vector<bool> > enableMatrix);
 private:
 	vector<vector<float> > m_degreeMatrix;
 	vector<vector<bool> > m_enableMatrix;
@@ -48,7 +48,7 @@ class compTTestCode: public tcpData
 public:
 	compTTestCode();
 	vector<int> generate();
-	void setEnable(vector<vector<bool> > enableMatrix);
+	bool setEnable(vector<vector<bool> > enableMatrix);
 private:
 	vector<vector<bool> > m_enableMatrix;
 };
@@ -58,7 +58,7 @@ class compRTestCode: public tcpData
 public:
 	compRTestCode();
 	vector<int> generate();
-	void setEnable(vector<vector<bool> > enableMatrix);
+	bool setEnable(vector<vector<bool> > enableMatrix);
 private:
 	vector<vector<bool> > m_enableMatrix;
 };

@@ -2,6 +2,7 @@
 #define TCP_SEND_FRAME_H
 
 #include "comm.h"
+#include "tcpData.h"
 
 class tcpSendFrame
 {
@@ -108,3 +109,70 @@ private:
 };
 
 #endif // TCP_SEND_FRAME_H
+
+// for测试参数设置
+
+//1.T组件修正码
+class compTCorrectionSendFrame: public tcpSendFrame
+{
+public:
+	bool setDegree(vector<vector<float> > degreeMatrix);
+	bool setEnable(vector<vector<bool> > enableMatrix);
+	vector<int> generateFrame();
+private:
+	compTCorrection m_ctc;
+};
+
+//2.T组件修正码
+class compTTestCodeSendFrame: public tcpSendFrame
+{
+public:
+	bool setEnable(vector<vector<bool> > enableMatrix);
+	vector<int> generateFrame();
+private:
+	compTTestCode m_ctt;
+};
+
+//3.R组件修正码
+class compRCorrectionSendFrame: public tcpSendFrame
+{
+public:
+	bool setDegree(vector<vector<float> > degreeMatrix);
+	bool setEnable(vector<vector<bool> > enableMatrix);
+	vector<int> generateFrame();
+private:
+	compRCorrection m_crc;
+};
+
+//4.R组件修正码
+class compRTestCodeSendFrame: public tcpSendFrame
+{
+public:
+	bool setEnable(vector<vector<bool> > enableMatrix);
+	vector<int> generateFrame();
+private:
+	compRTestCode m_crt;
+};
+
+//5.R组件安装误差
+class compRInstallErrorSendFrame: public tcpSendFrame
+{
+public:
+	vector<int> generateFrame();
+	void set(float x, float y, float z);
+private:
+	float 	m_x;
+	float 	m_y;
+	float 	m_z;
+};
+
+//6.R组件定点命令格式
+class compRFixPointSendFrame: public tcpSendFrame
+{
+public:
+	vector<int> generateFrame();
+	void set(float x, float y);
+private:
+	float 	m_x;
+	float 	m_y;
+};

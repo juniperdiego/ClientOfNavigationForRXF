@@ -29,14 +29,20 @@ compTCorrection::compTCorrection()
 	m_dataLenOccupyBytes = 2;//compTCorrection
 }
 
-void compTCorrection::setDegree(vector<vector<float> > degreeMatrix)
+bool compTCorrection::setDegree(vector<vector<float> > degreeMatrix)
 {
+	if(degreeMatrix.size() != 16 || degreeMatrix[0].size() != 16)
+		return false;
 	m_degreeMatrix = degreeMatrix;
+	return true;
 }
 
-void compTCorrection::setEnable(vector<vector<bool> > enableMatrix)
+bool compTCorrection::setEnable(vector<vector<bool> > enableMatrix)
 {
+	if(enableMatrix.size() != 16 || enableMatrix[0].size() != 16)
+		return false;
 	m_enableMatrix = enableMatrix;
+	return true;
 }
 
 vector<int> compTCorrection::generate()
@@ -88,14 +94,20 @@ compRCorrection::compRCorrection()
 {
 }
 
-void compRCorrection::setDegree(vector<vector<float> > degreeMatrix)
+bool compRCorrection::setDegree(vector<vector<float> > degreeMatrix)
 {
+	if(degreeMatrix.size() != 6 || degreeMatrix[0].size() != 6)
+		return false;
 	m_degreeMatrix = degreeMatrix;
+	return true;
 }
 
-void compRCorrection::setEnable(vector<vector<bool> > enableMatrix)
+bool compRCorrection::setEnable(vector<vector<bool> > enableMatrix)
 {
+	if(enableMatrix.size() != 6 || enableMatrix[0].size() != 6)
+		return false;
 	m_enableMatrix = enableMatrix;
+	return true;
 }
 
 vector<int> compRCorrection::generate()
@@ -148,9 +160,12 @@ compTTestCode::compTTestCode()
 {
 }
 
-void compTTestCode::setEnable(vector<vector<bool> > enableMatrix)
+bool compTTestCode::setEnable(vector<vector<bool> > enableMatrix)
 {
+	if(enableMatrix.size() != 16 || enableMatrix[0].size() != 16)
+		return false;
 	m_enableMatrix = enableMatrix;
+	return true;
 }
 
 vector<int> compTTestCode::generate()
@@ -207,9 +222,12 @@ compRTestCode::compRTestCode()
 {
 }
 
-void compRTestCode::setEnable(vector<vector<bool> > enableMatrix)
+bool compRTestCode::setEnable(vector<vector<bool> > enableMatrix)
 {
+	if(enableMatrix.size() != 6 || enableMatrix[0].size() != 6)
+		return false;
 	m_enableMatrix = enableMatrix;
+	return true;
 }
 
 vector<int> compRTestCode::generate()
