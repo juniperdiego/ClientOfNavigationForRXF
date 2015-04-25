@@ -93,18 +93,14 @@ void InterfaceServer::readMessage8000() //读取信息
 	if (m_tcpSocket8000 == NULL) return;
 
     QByteArray qba= m_tcpSocket8000->readAll(); //读取   
-    qDebug()<<qba;   
-    QString ss=QVariant(qba).toString();   
-    ui.textEdit_rec->setText(ss);   
+    ui.textEdit_rec->setPlainText(QString(qba));   
 } 
 void InterfaceServer::readMessage8002() //读取信息   
 {  
 	if (m_tcpSocket8002 == NULL) return;
 
     QByteArray qba= m_tcpSocket8002->readAll(); //读取   
-    qDebug()<<qba;   
-    QString ss=QVariant(qba).toString();   
-    ui.textEdit_rec->setText(ss);   
+    ui.textEdit_rec->setPlainText(QString(qba));   
 } 
 void InterfaceServer::readMessage9000() //读取信息   
 {  
@@ -115,17 +111,14 @@ void InterfaceServer::readMessage9000() //读取信息
    	int bufSize = m_tcpSocket9000->read((char*)buf, maxBufSize); 
 	ntohlArray(buf, bufSize/sizeof(int) );
 
+	QString msg = "======Start Receive From Port 9000======\n";
 	for(int i = 0; i < bufSize/sizeof(int); i ++)
 	{
-		qDebug()  << buf[i] ;
+		msg += QString::number(buf[i]);
+		msg += "\n";
 	}
-	
-#if 0
-    QByteArray qba= m_tcpSocket9000->readAll(); //读取   
-    qDebug()<<qba;   
-    QString ss=QVariant(qba).toString();   
-    ui.textEdit_rec->setText(ss);   
-#endif
+	msg += "======End Receive From Port 9000======\n";
+	ui.textEdit_rec->setPlainText(msg);
 } 
 void InterfaceServer::readMessage9001() //读取信息   
 {  
@@ -136,10 +129,14 @@ void InterfaceServer::readMessage9001() //读取信息
    	int bufSize = m_tcpSocket9001->read((char*)buf, maxBufSize); 
 	ntohlArray(buf, bufSize/sizeof(int) );
 
-	for(int i = 0; i < bufSize/sizeof(int); i ++)
+	QString msg = "======Start Receive From Port 9001======\n";
+	for(int i = 0; i < bufSize/sizeof(int); i++)
 	{
-		qDebug()  << buf[i] ;
+		msg += QString::number(buf[i]);
+		msg += "\n";
 	}  
+	msg += "======End Receive From Port 9001======\n";
+	ui.textEdit_rec->setPlainText(msg);
 } 
 void InterfaceServer::sendMessage() //发送信息   
 {   

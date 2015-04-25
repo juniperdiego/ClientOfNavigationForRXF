@@ -50,8 +50,6 @@ InterfaceClient::InterfaceClient(QWidget *parent)
 	initSocket();
 
 	//test
-	QString info = toString("SocketÁ´½Ó´íÎó %1 ¶Ì¿ã %2£¡").arg(10).arg(20);
-	logWarning(info);
 }
 
 InterfaceClient::~InterfaceClient()

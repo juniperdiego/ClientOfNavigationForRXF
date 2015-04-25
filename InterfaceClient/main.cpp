@@ -1,5 +1,6 @@
 #include "interfaceclient.h"
 #include <QtWidgets/QApplication>
+#include <QDesktopWidget>
 
 #ifdef UT
 #include "dataGen.h"
@@ -33,7 +34,7 @@ void test_dataGenForAerocraft()
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
+	QApplication app(argc, argv);
 
 	//QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8")) ;
 
@@ -50,7 +51,8 @@ int main(int argc, char *argv[])
 #endif
 
 
-	InterfaceClient w;
-	w.show();
-	return a.exec();
+	InterfaceClient win;
+	win.move((app.desktop()->width() - win.width()) / 2, (app.desktop()->height() - win.height()) / 2);
+	win.show();
+	return app.exec();
 }
