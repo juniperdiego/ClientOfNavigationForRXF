@@ -1,8 +1,8 @@
 #include "pixel.h"
 #include "comm.h"
 
-const QString cValidStyle = "background-color: green";
-const QString cInvalidStyle = "background-color: lightGray";
+const QString cValidStyle = "Pixel {background-color: green}";
+const QString cInvalidStyle = "Pixel {background-color: lightGray}";
 
 Pixel::Pixel(const QString& value, bool valid, int mode, const QSize& size, QWidget *parent)
 	: QFrame(parent)
