@@ -56,7 +56,8 @@ PixelArray::PixelArray(int row, int col, int mode, bool showHeader, QWidget *par
 				rowList.push_back(pixel);
 			}
 		}
-		m_pixels.push_back(rowList);
+		if (!rowList.empty())
+			m_pixels.push_back(rowList);
 	}
 
 	mLayout->addLayout(gLayout);
@@ -83,9 +84,12 @@ void PixelArray::setAngleAndStates(const vector<vector<float>>& angles, const ve
 
 	for(int i=0; i<m_pixels.size(); i++) 
     { 
-		for(int j=0; j < m_pixels.size(); j++)
+		vector<Pixel*> rowPixels = m_pixels[i];
+		const vector<float> rowAngles = angles[i];
+		const vector<bool> rowStates = states[i];
+		for(int j=0; j < rowPixels.size(); j++)
 		{
-			m_pixels[i][j]->setAngleAndState(angles[i][j], states[i][j]); 
+			rowPixels[j]->setAngleAndState(rowAngles[j], rowStates[j]); 
 		}
     }
 }
@@ -96,10 +100,11 @@ void PixelArray::getAngleAndStates(vector<vector<float>>& angles, vector<vector<
     { 
 		vector<float> angle;
 		vector<bool> state;
-		for(int j=0; j < m_pixels.size(); j++)
+		vector<Pixel*> rowPixels = m_pixels[i];
+		for(int j=0; j < rowPixels.size(); j++)
 		{
-			angle.push_back(m_pixels[i][j]->getAngle()); 
-			state.push_back(m_pixels[i][j]->getState()); 
+			angle.push_back(rowPixels[j]->getAngle()); 
+			state.push_back(rowPixels[j]->getState()); 
 		}
 		angles.push_back(angle);
 		states.push_back(state);

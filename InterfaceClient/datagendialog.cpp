@@ -5,7 +5,7 @@ bool checkInputValue(QWidget* parent, QLineEdit* inputLE, float bottom, float to
 {
 	if (inputLE->text().isEmpty())
 	{
-		inputLE->setText(QString::number(0));
+		inputLE->setText(QString::number(lsb));
 	}
 
 	float value = inputLE->text().toFloat();

@@ -59,9 +59,9 @@ void InterfaceClient::onSTToggled(bool state)
 
 void InterfaceClient::onSZSendClick()
 {
-	if (!checkInputValue(this, ui.saxLE, -180, 180, 3, 0.625) || 
-		!checkInputValue(this, ui.sayLE, -180, 180, 3, 0.625) || 
-		!checkInputValue(this, ui.sazLE, -180, 180, 3, 0.625))
+	if (!checkInputValue(this, ui.saxLE, -180, 180, 3, 5.625) || 
+		!checkInputValue(this, ui.sayLE, -180, 180, 3, 5.625) || 
+		!checkInputValue(this, ui.sazLE, -180, 180, 3, 5.625))
 		return;
 
 	compRInstallErrorSendFrame crieSF;
@@ -81,8 +81,8 @@ void InterfaceClient::onSZSendClick()
 
 void InterfaceClient::onSDSendClick()
 {
-	if (!checkInputValue(this, ui.sdxLE, -180, 180, 3, 0.625) || 
-		!checkInputValue(this, ui.sdyLE, -180, 180, 3, 0.625))
+	if (!checkInputValue(this, ui.sdxLE, -180, 180, 3, 5.625) || 
+		!checkInputValue(this, ui.sdyLE, -180, 180, 3, 5.625))
 		return;
 
 	compRFixPointSendFrame crfpSF;

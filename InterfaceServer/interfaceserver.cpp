@@ -76,7 +76,7 @@ void InterfaceServer::newConnect8000()
 void InterfaceServer::newConnect8002()   
 {   
         m_tcpSocket8002 = m_tcpServer8002->nextPendingConnection(); //得到每个连进来的socket   
-        connect(m_tcpSocket8002,SIGNAL(readyRead()),this,SLOT(readMessage8001())); //有可读的信息，触发读函数槽 
+        connect(m_tcpSocket8002,SIGNAL(readyRead()),this,SLOT(readMessage8002())); //有可读的信息，触发读函数槽 
 }  
 void InterfaceServer::newConnect9000()   
 {   
