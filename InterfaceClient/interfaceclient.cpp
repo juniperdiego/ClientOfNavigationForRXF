@@ -1,6 +1,7 @@
 #include "interfaceclient.h"
 #include <QBrush>
 
+InterfaceClient* InterfaceClient::s_wnd = NULL;
 
 InterfaceClient::InterfaceClient(QWidget *parent)
 	: QMainWindow(parent)
@@ -20,7 +21,7 @@ InterfaceClient::InterfaceClient(QWidget *parent)
 	ui.logTW->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
 	//init validator
-	m_angleValid = new QDoubleValidator(0, 360, 3, this);
+	m_angleValid = new QDoubleValidator(-180, 180, 3, this);
 	m_doubleValid = new QDoubleValidator(this);
 	m_doubleValid->setBottom(0);
 		

@@ -24,6 +24,8 @@ public:
 	InterfaceClient(QWidget *parent = 0);
 	~InterfaceClient();
 
+	static InterfaceClient* s_wnd;
+
 public:
 	void addLog(LogTypeEnum type, const char* msg);
 	void clearLog();
@@ -72,6 +74,8 @@ public slots:
 	void onRXIntoClick();
 
 	//Setting
+	void onSRToggled(bool);
+	void onSTToggled(bool);
 	void onSZSendClick();
 	void onSDSendClick();
 	void onSRSendClick();

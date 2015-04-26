@@ -9,7 +9,7 @@
 #include <QMouseEvent>
 #include <QDoubleValidator>
 
-const QSize cDefSSize = QSize(40, 20);
+const QSize cDefSSize = QSize(50, 20);
 const QSize cDefLSize = QSize(80, 40);
 
 //mode 0:change 1:edit 2:edit/change -1:sample

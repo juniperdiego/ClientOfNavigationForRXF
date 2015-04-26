@@ -31,7 +31,7 @@ PixelArray::PixelArray(int row, int col, int mode, bool showHeader, QWidget *par
 	
 	for(int i = 0; i < row+1; ++i)
 	{
-		QList<Pixel*> rowList;
+		vector<Pixel*> rowList;
 		for(int j = 0; j < col+1; ++j)
 		{
 			if (i == 0 && j > 0)
@@ -50,12 +50,13 @@ PixelArray::PixelArray(int row, int col, int mode, bool showHeader, QWidget *par
 			}
 			else if (i > 0 && j > 0)
 			{
-				Pixel* pixel = new Pixel(QString("%1.%2").arg(i).arg(j), true, mode, large ? cDefLSize : cDefSSize);
+				int r = qrand()%32;
+				Pixel* pixel = new Pixel(QString::number(r*5.625), true, mode, large ? cDefLSize : cDefSSize);
 				gLayout->addWidget(pixel, i, j);
-				rowList.append(pixel);
+				rowList.push_back(pixel);
 			}
 		}
-		m_pixels.append(rowList);
+		m_pixels.push_back(rowList);
 	}
 
 	mLayout->addLayout(gLayout);
@@ -71,25 +72,36 @@ PixelArray::~PixelArray()
 
 }
 
-void PixelArray::setAngleAndStates(const vector<float>& angles, const vector<bool>& states)
+void PixelArray::setAngleAndStates(const vector<vector<float>>& angles, const vector<vector<bool>>& states)
 {
 	int aSize = angles.size();
 	int sSize = states.size();
 	if (aSize != sSize) return;
 
-	int size = qMin(aSize, m_pixels.count());
-	
-	for(int i=0; i<size; i++) 
+	if (aSize * aSize != m_pixels.size() * m_pixels.size())	
+		return;
+
+	for(int i=0; i<m_pixels.size(); i++) 
     { 
-        m_pixels[i]->setAngleAndState(angles[i], states[i]); 
+		for(int j=0; j < m_pixels.size(); j++)
+		{
+			m_pixels[i][j]->setAngleAndState(angles[i][j], states[i][j]); 
+		}
     }
 }
 
-void PixelArray::getAngleAndStates(vector<float>& angles, vector<bool>& states)
+void PixelArray::getAngleAndStates(vector<vector<float>>& angles, vector<vector<bool>>& states)
 {
-	for(int i=0; i<m_pixels.count(); i++) 
+	for(int i=0; i<m_pixels.size(); i++) 
     { 
-		angles.push_back(m_pixels[i]->getAngle()); 
-		states.push_back(m_pixels[i]->getState()); 
+		vector<float> angle;
+		vector<bool> state;
+		for(int j=0; j < m_pixels.size(); j++)
+		{
+			angle.push_back(m_pixels[i][j]->getAngle()); 
+			state.push_back(m_pixels[i][j]->getState()); 
+		}
+		angles.push_back(angle);
+		states.push_back(state);
     }
 }

@@ -14,12 +14,11 @@ public:
 	PixelArray(int row, int col, int mode, bool showHeader = true, QWidget *parent = NULL);
 	~PixelArray();
 
-	void setAngleAndStates(const vector<float>& angles, const vector<bool>& states);
-	void getAngleAndStates(vector<float>& angles, vector<bool>& states);
+	void setAngleAndStates(const vector<vector<float>>& angles, const vector<vector<bool>>& states);
+	void getAngleAndStates(vector<vector<float>>& angles, vector<vector<bool>>& states);
 
 private:
-	//QList<QList<Pixel*>>	m_pixels;
-	QList<Pixel*>	m_pixels;
+	vector<vector<Pixel*>>	m_pixels;
 };
 
 #endif // PIXELARRAY_H

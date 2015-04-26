@@ -1,5 +1,6 @@
 #include "pixel.h"
 #include "comm.h"
+#include "interfaceclient.h"
 
 const QString cValidStyle = "Pixel {background-color: green}";
 const QString cInvalidStyle = "Pixel {background-color: lightGray}";
@@ -27,7 +28,7 @@ Pixel::Pixel(const QString& value, bool valid, int mode, const QSize& size, QWid
 	m_edit->setVisible(false);
 	layout->addWidget(m_edit);
 
-	QDoubleValidator* validator = new QDoubleValidator(0, 360, 3, this);
+	QDoubleValidator* validator = new QDoubleValidator(0, 180, 3, this);
 	m_edit->setValidator(validator);
 
 	setLayout(layout);
@@ -71,7 +72,9 @@ bool Pixel::eventFilter(QObject* o, QEvent* e)
 
 void Pixel::onEditingFinished()
 {
-	m_label->setText(m_edit->text());
+	if (checkInputValue(InterfaceClient::s_wnd, m_edit, 0, 180, 3, 5.625))
+		m_label->setText(m_edit->text());
+
 	m_edit->setVisible(false);
 	m_label->setVisible(true);
 }

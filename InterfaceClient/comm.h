@@ -5,6 +5,7 @@
 #include <QString>
 #include <QDebug>
 #include <QMessageBox>
+#include <QLineEdit>
 
 
 #include <vector>
@@ -24,6 +25,7 @@ const int SR_PORT=8002;
 
 extern void htonlArray(int *p, int size);
 
+extern bool checkInputValue(QWidget* parent, QLineEdit* inputLE, float bottom, float top, int prec, float lsb);
 
 inline 
 QString toString(const QByteArray& str)

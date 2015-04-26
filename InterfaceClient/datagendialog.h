@@ -23,7 +23,7 @@ public:
 	bool isOnTrack() {return ui.fdzRB->isChecked();}
 	void setIsOnTrack(bool isOnTrack);
 
-	bool checkInputValue(QLineEdit* inputLE, float bottom, float top, int prec, float lsb);
+	//bool checkInputValue(QLineEdit* inputLE, float bottom, float top, int prec, float lsb);
 
 private slots:
 	void onFGenFileClick();

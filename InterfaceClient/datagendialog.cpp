@@ -1,6 +1,34 @@
 #include "datagendialog.h"
 #include "dataGen.h"
 
+bool checkInputValue(QWidget* parent, QLineEdit* inputLE, float bottom, float top, int prec, float lsb)
+{
+	if (inputLE->text().isEmpty())
+	{
+		inputLE->setText(QString::number(0));
+	}
+
+	float value = inputLE->text().toFloat();
+	
+	if (value < bottom || value > top)
+	{
+		QMessageBox::warning(parent, parent->windowTitle(), 
+			toString("参数超出范围[%1, %2]").arg(bottom).arg(top));
+		inputLE->setFocus();
+		return false;
+	}
+
+	float tmp = fmod(value, lsb);
+	if (!isZero(tmp))
+	{
+		int ratio = qRound(value/lsb);
+		if (ratio == 0) ratio = 1;
+		inputLE->setText(QString::number(lsb*ratio, 'f', prec));
+	}
+
+	return true;
+}
+
 int byte2hex(const char src[], char dst[], int *length)
 {
         int i,j,k;
@@ -111,14 +139,11 @@ void DataGenDialog::setIsOnTrack(bool isOnTrack)
 	}
 }
 
+#if 0
 bool DataGenDialog::checkInputValue(QLineEdit* inputLE, float bottom, float top, int prec, float lsb)
 {
 	if (inputLE->text().isEmpty())
 	{
-		//QMessageBox::warning(this, windowTitle(), 
-		//	toString("请输入参数"));
-		//inputLE->setFocus();
-		//return false;
 		inputLE->setText(QString::number(0));
 	}
 
@@ -141,21 +166,22 @@ bool DataGenDialog::checkInputValue(QLineEdit* inputLE, float bottom, float top,
 
 	return true;
 }
+#endif
 
 bool DataGenDialog::checkCraftParameter()
 {
-	if (!checkInputValue(ui.zxLE, -8000, 8000, 3, 0.001) ||
-		!checkInputValue(ui.zyLE, -8000, 8000, 3, 0.001) ||
-		!checkInputValue(ui.zzLE, -8000, 8000, 3, 0.001) ||
-		!checkInputValue(ui.zxsLE, -12000, 12000, 4, 0.0015) ||
-		!checkInputValue(ui.zysLE, -12000, 12000, 4, 0.0015) ||
-		!checkInputValue(ui.zzsLE, -12000, 12000, 4, 0.0015) ||
-		!checkInputValue(ui.gjLE, -180, 180, isOnTrack() ? 4 : 3, isOnTrack() ? 0.0256 : 0.006) ||
-		!checkInputValue(ui.fjLE, -180, 180, isOnTrack() ? 4 : 3, isOnTrack() ? 0.0256 : 0.006) ||
-		!checkInputValue(ui.pjLE, -180, 180, isOnTrack() ? 4 : 3, isOnTrack() ? 0.0256 : 0.006) ||
-		!checkInputValue(ui.gjsLE, isOnTrack() ? -10 : -100, isOnTrack() ? 10 : 100, isOnTrack() ? 5 : 4, isOnTrack() ? 0.00512 : 0.0035) ||
-		!checkInputValue(ui.fjsLE, isOnTrack() ? -10 : -100, isOnTrack() ? 10 : 100, isOnTrack() ? 5 : 4, isOnTrack() ? 0.00512 : 0.0035) ||
-		!checkInputValue(ui.pjsLE, isOnTrack() ? -10 : -100, isOnTrack() ? 10 : 100, isOnTrack() ? 5 : 4, isOnTrack() ? 0.00512 : 0.0035)
+	if (!checkInputValue(this, ui.zxLE, -8000, 8000, 3, 0.001) ||
+		!checkInputValue(this, ui.zyLE, -8000, 8000, 3, 0.001) ||
+		!checkInputValue(this, ui.zzLE, -8000, 8000, 3, 0.001) ||
+		!checkInputValue(this, ui.zxsLE, -12000, 12000, 4, 0.0015) ||
+		!checkInputValue(this, ui.zysLE, -12000, 12000, 4, 0.0015) ||
+		!checkInputValue(this, ui.zzsLE, -12000, 12000, 4, 0.0015) ||
+		!checkInputValue(this, ui.gjLE, -180, 180, isOnTrack() ? 4 : 3, isOnTrack() ? 0.0256 : 0.006) ||
+		!checkInputValue(this, ui.fjLE, -180, 180, isOnTrack() ? 4 : 3, isOnTrack() ? 0.0256 : 0.006) ||
+		!checkInputValue(this, ui.pjLE, -180, 180, isOnTrack() ? 4 : 3, isOnTrack() ? 0.0256 : 0.006) ||
+		!checkInputValue(this, ui.gjsLE, isOnTrack() ? -10 : -100, isOnTrack() ? 10 : 100, isOnTrack() ? 5 : 4, isOnTrack() ? 0.00512 : 0.0035) ||
+		!checkInputValue(this, ui.fjsLE, isOnTrack() ? -10 : -100, isOnTrack() ? 10 : 100, isOnTrack() ? 5 : 4, isOnTrack() ? 0.00512 : 0.0035) ||
+		!checkInputValue(this, ui.pjsLE, isOnTrack() ? -10 : -100, isOnTrack() ? 10 : 100, isOnTrack() ? 5 : 4, isOnTrack() ? 0.00512 : 0.0035)
 		)
 	{
 		return false;
