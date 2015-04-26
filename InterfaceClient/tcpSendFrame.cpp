@@ -63,7 +63,7 @@ vector<int> remoteParamSendFrame::generateFrame()
 
 vector<int> aerocraftSendFrame::generateFrame(char* buf, int len)
 {
-	m_frameEndTag = (len + 5) * 4;
+	m_frameLen = (len + 5) * 4;
 
 	vector<int>  res;
 
@@ -82,7 +82,7 @@ vector<int> aerocraftSendFrame::generateFrame(char* buf, int len)
 
 vector<int> broadcastSendFrame::generateFrame(char* buf, int len)
 {
-	m_frameEndTag = (len + 5) * 4;
+	m_frameLen = (len + 5) * 4;
 
 	vector<int>  res;
 

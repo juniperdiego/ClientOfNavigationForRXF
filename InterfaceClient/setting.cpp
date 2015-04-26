@@ -127,10 +127,10 @@ void InterfaceClient::onSRSendClick()
 
 	int *packet = new int[frame.size()];
 
-	htonlArray(packet, frame.size());
-
 	for(int i = 0; i < frame.size(); i++)
 		packet[i] = frame[i];
+
+	htonlArray(packet, frame.size());
 
 	m_socketSR->write((char*)packet, frame.size() * sizeof(int));
 }
@@ -162,11 +162,12 @@ void InterfaceClient::onSTSendClick()
 
 	int *packet = new int[frame.size()];
 
-	htonlArray(packet, frame.size());
+	
 
 	for(int i = 0; i < frame.size(); i++)
 		packet[i] = frame[i];
 
+	htonlArray(packet, frame.size());
 	m_socketST->write((char*)packet, frame.size() * sizeof(int));
 }
 
